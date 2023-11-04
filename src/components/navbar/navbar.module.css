@@ -1,0 +1,17 @@
+.header {
+  border-bottom: 2px solid #dbdbdb;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+.navItems {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+.navLink {
+  padding: 0 1rem;
+}
