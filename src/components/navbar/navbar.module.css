@@ -12,6 +12,11 @@
   display: flex;
   justify-content: space-between;
 }
+.navItem {
+  display: flex;
+  align-items: center;
+}
 .navLink {
+  display: inline-block;
   padding: 0 1rem;
 }

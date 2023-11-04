@@ -13,12 +13,12 @@ export default function Navbar() {
               </a>
             </div>
             <ul className={styles.navItems}>
-              <li>
+              <li className={styles.navItem}>
                 <a href="#" className={styles.navLink}>
-                  Search
+                  <BiSearch value={{ style:"height: 100%" }}/>
                 </a>
               </li>
-              <li>
+              <li className={styles.navItem}>
                 <a href="#" className={styles.navLink}>
                   Sign In
                 </a>
