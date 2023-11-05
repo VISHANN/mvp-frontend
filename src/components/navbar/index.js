@@ -19,7 +19,7 @@ export default function Navbar() {
                 </a>
               </li>
               <li className={styles.navItem}>
-                <a href="#" className={styles.navLink}>
+                <a href="/signin" className={styles.navLink}>
                   Sign In
                 </a>
               </li>
