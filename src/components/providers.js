@@ -9,3 +9,5 @@ export default function Providers ({ children }){
     </GoogleOAuthProvider>
   )
 }
+
+// interpolate clientId as an environment variable
