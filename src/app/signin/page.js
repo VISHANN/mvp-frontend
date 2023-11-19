@@ -1,8 +1,18 @@
 "use client"
 
 import { GoogleLogin } from "@react-oauth/google"
+import { UserContext } from "@/components/providers";
+import { useContext } from "react";
+import Link from 'next/link'
+
+function handleUser(user, dispatch) {
+  dispatch({ type: 'ADD_USER', payload: user });
+  localStorage.setItem('user', JSON.stringify(user));
+}
 
 export default function SignIn() {
+  const [user, dispatch] = useContext(UserContext);
+
   return (
     <>
     { /* Using GoogleLogin to get JWT 
@@ -18,13 +28,14 @@ export default function SignIn() {
             credentials: "include", 
           })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => handleUser(data, dispatch))
             .catch(err => console.log(err));
         }}
         onError={() => {
           console.log('Login Failed');
         }}
       />
+      <Link href="/">Home</Link>
     </>
   )
 }
