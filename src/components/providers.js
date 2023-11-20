@@ -23,7 +23,7 @@ export default function Providers ({ children }){
 
   return (
     <UserContext.Provider value={[user, dispatch]}>
-      <GoogleOAuthProvider clientId="732729862786-b9539gcumc7que63gif9b2d5pa4bs5mq.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
         {children}
       </GoogleOAuthProvider>
     </UserContext.Provider>
