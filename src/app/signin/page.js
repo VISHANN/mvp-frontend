@@ -4,14 +4,20 @@ import { GoogleLogin } from "@react-oauth/google"
 import { UserContext } from "@/components/providers";
 import { useContext } from "react";
 import Link from 'next/link'
+import { useRouter } from "next/navigation";
 
 function handleUser(user, dispatch) {
-  dispatch({ type: 'ADD_USER', payload: user });
+  const {given_name, picture} = user;
+  dispatch({ type: 'ADD_USER', payload:{ given_name, picture }});
+
+  // localStorage is built to retrieve string only, so stringify using JSON.stringify while 
+  // saving to localStorage and JSON.parse while retrieving from localStorage
   localStorage.setItem('user', JSON.stringify(user));
 }
 
 export default function SignIn() {
   const [user, dispatch] = useContext(UserContext);
+  const router = useRouter();
 
   return (
     <>
@@ -22,20 +28,19 @@ export default function SignIn() {
           -> server sends that created user once the session has been initialized */ }
       <GoogleLogin
         onSuccess={credentialResponse => {
-          console.log(credentialResponse);
           fetch('http://localhost:8000/api/signin',{ 
             headers: { Authorization: `Bearer ${credentialResponse.credential}`},
             credentials: "include", 
           })
             .then(res => res.json())
-            .then(data => handleUser(data, dispatch))
+            .then(returnedUser => handleUser(returnedUser, dispatch, router))
+            .then(() => router.push('/'))
             .catch(err => console.log(err));
         }}
         onError={() => {
           console.log('Login Failed');
         }}
       />
-      <Link href="/">Home</Link>
     </>
   )
 }
