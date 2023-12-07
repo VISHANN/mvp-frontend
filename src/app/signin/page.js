@@ -1,9 +1,8 @@
 "use client"
 
 import { GoogleLogin } from "@react-oauth/google"
-import { UserContext } from "@/components/providers";
+import { UserContext } from "@/app/context";
 import { useContext } from "react";
-import Link from 'next/link'
 import { useRouter } from "next/navigation";
 
 function handleUser(user, dispatch) {

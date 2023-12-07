@@ -1,7 +1,7 @@
 "use client"
 
 import Navbar from '@/components/navbar'
-import { UserContext } from '@/components/providers'
+import { UserContext } from '@/app/context'
 import { useContext } from 'react'
 
 export default function Home() {

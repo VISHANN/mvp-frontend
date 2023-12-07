@@ -1,7 +1,11 @@
+import { UserContext } from '@/app/context'
+import { useContext } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import styles from './navbar.module.css'
 
 export default function Navbar() {
+  const [user, ] = useContext(UserContext);
+
   return (
     <>
       <header className={styles.header}>

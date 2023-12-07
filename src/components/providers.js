@@ -1,10 +1,9 @@
 "use client"
 
 import { GoogleOAuthProvider } from "@react-oauth/google"
-import { createContext, useEffect, useReducer } from "react"
+import { useEffect, useReducer } from "react"
 import { useRouter } from "next/navigation";
-
-export const UserContext = createContext(null);
+import { UserContext } from "@/app/context";
 
 function reducer(state, action) {
   switch(action.type) {
