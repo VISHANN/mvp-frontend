@@ -48,11 +48,24 @@ body {
   }
 }
 
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  color:#fff;
+  background-color: #1877f2;
+}
+
 /* CUSTOM CSS */
 
 /* 
-  .react-icon is provided as className to global context provider for react icons: IconContext.Provider
-  in providers.js
+  .react-icon is provided as className to global context provider 
+  for react icons: IconContext.Provider in providers.js
  */
 .react-icon {
   height: 100%;
