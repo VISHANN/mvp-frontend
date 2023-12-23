@@ -30,13 +30,11 @@ a, a:focus, a:visited, a:hover {
   color: inherit;
 }
 
-/* CUSTOM CSS */
+/* UTILITY CSS */
 
 body {
   color: black;
 }
-
-/* UTILITY CSS */
 
 .container {
   width: 80%;
@@ -48,4 +46,14 @@ body {
   .container {
     width: 100%;
   }
+}
+
+/* CUSTOM CSS */
+
+/* 
+  .react-icon is provided as className to global context provider for react icons: IconContext.Provider
+  in providers.js
+ */
+.react-icon {
+  height: 100%;
 }

@@ -23,7 +23,7 @@ export default function Navbar() {
             <ul className={styles.navItems}>
               <li className={styles.navItem}>
                 <NavLink href="#">
-                  <BiSearch value={{ style:"height: 100%" }}/>
+                  <BiSearch />
                 </NavLink>
               </li>
               <li className={styles.navItem}>

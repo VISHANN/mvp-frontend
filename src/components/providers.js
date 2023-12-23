@@ -4,6 +4,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google"
 import { useEffect, useReducer } from "react"
 import { useRouter } from "next/navigation";
 import { UserContext } from "@/app/context";
+import { IconContext } from "react-icons";
 
 function reducer(state, action) {
   switch(action.type) {
@@ -49,7 +50,9 @@ export default function Providers ({ children }){
   return (
     <UserContext.Provider value={[user, dispatch]}>
       <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
-        {children}
+        <IconContext.Provider value={{ className: "react-icon" }}>
+          {children}
+        </IconContext.Provider>
       </GoogleOAuthProvider>
     </UserContext.Provider>
   )

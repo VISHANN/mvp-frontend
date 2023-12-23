@@ -1,11 +1,12 @@
 "use client"
 
 import { UserContext } from "@/app/context";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
+import Link from "next/link";
 import UserProfile from "../UserProfile";
-
+import { RiSettings3Fill } from "react-icons/ri";
+import { RiSettings3Line } from "react-icons/ri";
 export default function VariableLink() {
   const pathname = usePathname();
 	const [user, ] = useContext(UserContext);
@@ -13,7 +14,9 @@ export default function VariableLink() {
 	switch (pathname) {
     case '/profile':
       return (
-        <>Setting</>
+        <Link href="#">
+          <RiSettings3Line />
+        </Link>
       )
     default: 
       return (
