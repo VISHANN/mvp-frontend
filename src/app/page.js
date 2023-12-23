@@ -1,6 +1,5 @@
 "use client"
 
-import Navbar from '@/components/navbar'
 import { UserContext } from '@/app/context'
 import { useContext } from 'react'
 
@@ -17,7 +16,6 @@ export default function Home() {
   }
   return (
     <main>
-      <Navbar />
       <br />
       {/* <button onClick={handleClick}> Get User </button> */}
     </main>

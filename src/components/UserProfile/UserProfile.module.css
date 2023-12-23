@@ -1,0 +1,9 @@
+.imgWrap {
+  width: 40px;
+  height: 40px;
+}
+@media screen and (max-width: 760px) {
+  .imgWrap {
+    height: 100%;
+  }
+}
