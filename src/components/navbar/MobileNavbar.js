@@ -15,7 +15,7 @@ export default function Navbar() {
       <header className={styles.header}>
         <div className="container">
           <nav className={styles.navbar}>
-            <div className="navBrand">
+            <div className={styles.navBrand}>
               <NavLink href="/">
                 Brand
               </NavLink>

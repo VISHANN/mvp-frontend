@@ -1,6 +1,12 @@
 .imgWrap {
-  width: 40px;
-  height: 40px;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.imgWrap img {
+  display: inline-block;
 }
 @media screen and (max-width: 760px) {
   .imgWrap {

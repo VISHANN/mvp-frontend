@@ -3,6 +3,7 @@
 import { UserContext } from '@/app/context'
 import { useContext } from 'react'
 import MobileNavbar from './MobileNavbar'
+import Sidebar from './Sidebar'
 
 export default function Navbar() {
   const [user, ] = useContext(UserContext);
@@ -13,7 +14,7 @@ export default function Navbar() {
     )
   } else {
     return (
-      <div>Sidebar</div>
+      <Sidebar />
     )
   }
 }

@@ -12,7 +12,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
-img, picture, video, canvas, svg {
+img, picture, video, canvas {
   display: block;
   max-width: 100%;
 }
@@ -34,10 +34,11 @@ a, a:focus, a:visited, a:hover {
 
 body {
   color: black;
+  height: 200vh;
 }
 
 .container {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -45,6 +46,7 @@ body {
 @media screen and (max-width: 760px) {
   .container {
     width: 100%;
+    padding: 0 0.5rem;
   }
 }
 
@@ -69,4 +71,5 @@ body {
  */
 .react-icon {
   height: 100%;
+  width: 1.5rem;
 }
