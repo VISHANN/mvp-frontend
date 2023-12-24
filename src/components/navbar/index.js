@@ -2,7 +2,7 @@
 
 import { UserContext } from '@/app/context'
 import { useContext } from 'react'
-import MobileNavbar from './MobileNavbar'
+import Appbar from './Appbar'
 import Sidebar from './Sidebar'
 
 export default function Navbar() {
@@ -10,7 +10,7 @@ export default function Navbar() {
 
   if (document.documentElement.clientWidth < 760){
     return (
-      <MobileNavbar />
+      <Appbar />
     )
   } else {
     return (

@@ -1,14 +1,15 @@
 "use client"
 
 import styles from './Sidebar.module.css'
-import { UserContext } from "@/app/context";
-import { useContext } from "react";
-import NavLink from './navLink'
+import { UserContext } from "@/app/context"
+import { useContext } from "react"
+import Link from 'next/link'
 import UserProfile from '../UserProfile'
 import { BiSearch } from 'react-icons/bi'
-import { RiHome7Line } from "react-icons/ri";
-import { IoMenu } from "react-icons/io5";import { MdBookmarkBorder } from "react-icons/md";
-import { LuSettings } from "react-icons/lu";
+import { RiHome7Line } from "react-icons/ri"
+import { IoMenu } from "react-icons/io5"
+import { MdBookmarkBorder } from "react-icons/md"
+import { LuSettings } from "react-icons/lu"
 
 
 export default function Sidebar() {
@@ -58,5 +59,13 @@ export default function Sidebar() {
         </div>
       </div>
     </nav>
+  )
+}
+
+function NavLink({ href, children }) {
+  return (
+    <Link href={href} className={styles.navLink}>
+      {children}
+    </Link>
   )
 }

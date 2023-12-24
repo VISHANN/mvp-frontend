@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from './navbar.module.css'
+import styles from './Appbar.modu'
 
 
 export default function NavLink({ href, children }) {

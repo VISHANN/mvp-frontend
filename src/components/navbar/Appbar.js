@@ -2,12 +2,12 @@
 
 import { UserContext } from '@/app/context'
 import { useContext } from 'react'
+import Link from 'next/link'
 import { BiSearch } from 'react-icons/bi'
-import NavLink from './navLink'
-import styles from './navbar.module.css'
+import styles from './Appbar.module.css'
 import VariableLink from './VariableLink'
 
-export default function Navbar() {
+export default function Appbar() {
   const [user, ] = useContext(UserContext);
 
   return (
@@ -34,5 +34,13 @@ export default function Navbar() {
         </div>
       </header>
     </>
+  )
+}
+
+function NavLink({ href, children }) {
+  return (
+    <Link href={href} className={styles.navLink}>
+      {children}
+    </Link>
   )
 }
