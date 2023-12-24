@@ -1,8 +1,8 @@
 "use client"
 
+import styles from './Sidebar.module.css'
 import { UserContext } from "@/app/context";
 import { useContext } from "react";
-import styles from './navbar.module.css'
 import NavLink from './navLink'
 import UserProfile from '../UserProfile'
 import { BiSearch } from 'react-icons/bi'
