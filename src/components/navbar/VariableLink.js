@@ -4,6 +4,7 @@ import { UserContext } from "@/app/context";
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
 import Link from "next/link";
+import { NavLink } from "./Appbar";
 import UserProfile from "../UserProfile";
 import { RiSettings3Fill } from "react-icons/ri";
 import { RiSettings3Line } from "react-icons/ri";
@@ -15,26 +16,26 @@ export default function VariableLink() {
   // Render Sign In button if user state empty
   if (!user.picture){
     return(
-      <Link href='/signin'>
-        <button className="btn btn-primary">
+      <NavLink href='/signin'>
+        <button className="btn btn-primary" style={{ fontSize: ".8rem" }}>
           Log In
         </button>
-      </Link>
+      </NavLink>
     )
   }
 
 	switch (pathname) {
     case '/profile':
       return (
-        <Link href="#">
+        <NavLink href="#">
           <RiSettings3Line />
-        </Link>
+        </NavLink>
       )
     default: 
       return (
-        <Link href="/profile">
+        <NavLink href="/profile">
 					<UserProfile src={user.picture} />
-				</Link>
+				</NavLink>
       )
   }
 }

@@ -37,7 +37,7 @@ export default function Appbar() {
   )
 }
 
-function NavLink({ href, children }) {
+export function NavLink({ href, children }) {
   return (
     <Link href={href} className={styles.navLink}>
       {children}
