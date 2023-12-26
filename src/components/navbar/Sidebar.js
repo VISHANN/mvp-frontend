@@ -2,7 +2,7 @@
 
 import styles from './Sidebar.module.css'
 import { UserContext } from "@/app/context"
-import { useContext } from "react"
+import { useContext } from "react" 
 import Link from 'next/link'
 import UserProfile from '../UserProfile'
 import { BiSearch } from 'react-icons/bi'
@@ -14,6 +14,7 @@ import { LuSettings } from "react-icons/lu"
 
 export default function Sidebar() {
   const [user, ] = useContext(UserContext);
+  let isLoggedIn = Boolean(user.given_name);
 
   return(
     <nav className={styles.sidebar}>
@@ -34,21 +35,24 @@ export default function Sidebar() {
               <BiSearch /> Search
             </NavLink>
           </li>
-          <li className={styles.navItem}>
-            <NavLink href="#">
-              <MdBookmarkBorder /> Shelves
-            </NavLink>
-          </li>
-          <li className={styles.navItem}>
-            <NavLink href="#">
-              <UserProfile src={user.picture} /> Profile
-            </NavLink>
-          </li>
-          <li className={styles.navItem}>
-            <NavLink href='#'>
-              <LuSettings />  Settings
-            </NavLink>
-          </li>
+          { isLoggedIn ? (
+            <li className={styles.navItem}>
+              <NavLink href="#">
+                <MdBookmarkBorder /> Shelves
+              </NavLink>
+            </li>) :  null }
+          { isLoggedIn ? ( 
+            <li className={styles.navItem}>
+              <NavLink href="#">
+                <UserProfile src={user.picture} /> Profile
+              </NavLink>
+            </li> ) : null }
+          { isLoggedIn ? ( 
+            <li className={styles.navItem}>
+              <NavLink href='#'>
+                <LuSettings />  Settings
+              </NavLink>
+            </li> ) : null }
         </ul>
       </div>
       <div className={styles.bottom}>
@@ -61,6 +65,8 @@ export default function Sidebar() {
     </nav>
   )
 }
+
+// Separate concerns by rebasing navLink component for both navbars.
 
 function NavLink({ href, children }) {
   return (
