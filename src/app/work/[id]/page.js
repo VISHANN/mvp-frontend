@@ -17,11 +17,11 @@ export default function Work() {
         </section>
         <section className={styles.col_9}>
           <div className={styles.work}>
-            <div className={styles.title}>
-              <h1>Steve Jobs</h1>
+            <div>
+              <h1  className={styles.title}>Steve Jobs</h1>
             </div>
-            <div className={styles.author}>
-              <h2> Walter Isaacson </h2>
+            <div>
+              <h2 className={styles.author}> Walter Isaacson </h2>
             </div>
             <div className={styles.description}>
               <p className="lead">

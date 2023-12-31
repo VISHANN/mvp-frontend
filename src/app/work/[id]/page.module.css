@@ -13,6 +13,16 @@
   display: block;
   overflow: hidden;
 }
+.title {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 0.1rem;
+}
+.author {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: .1rem;
+}
 
 @media screen and (max-width: 760px) {
   .gridWrap {
@@ -24,5 +34,9 @@
   .imgWrap {
     width: 80%;
     margin: 0 auto;
+  }
+  .title, 
+  .author {
+    text-align: center;
   }
 }
