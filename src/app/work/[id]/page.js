@@ -1,5 +1,6 @@
 "use client"
 import styles from './page.module.css'
+import Image from 'next/image'
 
 export default function Work() {
   return (
@@ -8,7 +9,11 @@ export default function Work() {
         <section className={styles.col_9}>
           <div>
             <div className={styles.imgWrap}>
-              <img src="https://covers.openlibrary.org/b/id/12680694-L.jpg" alt="Steve Jobs Biography" />
+              <Image 
+                src="https://covers.openlibrary.org/b/id/12680694-L.jpg" 
+                alt="Steve Jobs Biography" 
+                
+                fill={true} />
             </div>
           </div>
           <div className="button-group">

@@ -9,9 +9,15 @@
 }
 .imgWrap {
   width: 100%;
+  max-width: 200px;
+  aspect-ratio: 2/3;
   padding: 0.5rem;
   display: block;
   overflow: hidden;
+  position: relative;
+}
+.imgWrap img {
+  object-fit: contain;
 }
 .title {
   font-size: 2rem;
@@ -35,8 +41,7 @@
     width: 80%;
     margin: 0 auto;
   }
-  .title, 
-  .author {
+  .title, .author {
     text-align: center;
   }
 }
