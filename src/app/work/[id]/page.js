@@ -1,6 +1,7 @@
 "use client"
 import styles from './page.module.css'
 import Image from 'next/image'
+import ShelvesButton from '@/components/ShelvesBtn'
 
 export default function Work() {
   return (
@@ -12,12 +13,13 @@ export default function Work() {
               <Image 
                 src="https://covers.openlibrary.org/b/id/12680694-L.jpg" 
                 alt="Steve Jobs Biography" 
-                
                 fill={true} />
             </div>
           </div>
-          <div className="button-group">
-            <button>to read</button>
+          <div className={styles.btnGroup}>
+            <div>
+              <ShelvesButton />
+            </div>
           </div>
         </section>
         <section className={styles.col_9}>

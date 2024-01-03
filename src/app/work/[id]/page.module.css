@@ -30,6 +30,9 @@
   margin-bottom: .1rem;
 }
 
+.btnGroup {
+  margin-top: 1rem;
+}
 @media screen and (max-width: 760px) {
   .gridWrap {
     grid-template-columns: 1fr;

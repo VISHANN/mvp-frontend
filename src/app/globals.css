@@ -30,6 +30,12 @@ a, a:focus, a:visited, a:hover {
   color: inherit;
 }
 
+/* CSS Variables */
+
+html {
+  --work-img-max-width: 200px;
+}
+
 /* UTILITY CSS */
 
 body {

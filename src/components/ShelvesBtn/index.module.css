@@ -1,0 +1,40 @@
+.shelfBtn {
+  width: 100%;
+  max-width: calc(var(--work-img-max-width) - .5rem);
+  background-color: #006241;
+  color: white;
+  border-radius: .5rem;
+}
+.primaryBtn {
+  /* reset the default styling of buttons */
+  border: none;
+  border-right: 1px solid white;
+  background-color: inherit;
+  border-radius: inherit;
+  color: inherit;
+  width: 80%;
+  padding: 0.6rem 1rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.secondaryBtn {
+  width: 18%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: inherit;
+  border: none;
+}
+.arrow {
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #fff;
+  width: 12px;
+}
