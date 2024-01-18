@@ -1,7 +1,7 @@
 .shelfBtn {
   width: 100%;
   max-width: calc(var(--work-img-max-width) - .5rem);
-  background-color: #006241;
+  background-color: var(--primary-green);
   color: white;
   border-radius: .5rem;
 }

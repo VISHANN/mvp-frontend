@@ -38,6 +38,11 @@ html {
 
 /* UTILITY CSS */
 
+:root {
+  --primary-blue: #1877f2;
+  --primary-green: #006241;
+}
+
 body {
   color: black;
   height: 200vh;
@@ -66,7 +71,7 @@ body {
 }
 .btn-primary {
   color:#fff;
-  background-color: #1877f2;
+  background-color: var(--primary-green);
 }
 
 /* CUSTOM CSS */

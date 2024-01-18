@@ -2,6 +2,8 @@
 import styles from './page.module.css'
 import Image from 'next/image'
 import ShelvesButton from '@/components/ShelvesBtn'
+import Link from 'next/link'
+import PrimaryLink from '@/components/PrimaryLink'
 
 export default function Work() {
   return (
@@ -28,7 +30,12 @@ export default function Work() {
               <h1  className={styles.title}>Steve Jobs</h1>
             </div>
             <div>
-              <h2 className={styles.author}> Walter Isaacson </h2>
+              <h2 className={styles.author}>
+                <PrimaryLink 
+                  href={"#"} >  
+                  Walter Isaacson 
+                </PrimaryLink>
+              </h2>
             </div>
             <div className={styles.description}>
               <p className="lead">
@@ -36,7 +43,10 @@ export default function Work() {
 
                 This biography shares the life and personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing.
               </p>
-              <button> Show more</button>
+              <PrimaryLink 
+                href={'#'}> 
+                Show more
+              </PrimaryLink>
             </div>
           </div>
         </section>
