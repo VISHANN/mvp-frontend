@@ -74,6 +74,17 @@ body {
   background-color: var(--primary-green);
 }
 
+.link-primary {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--primary-green);
+}
+.capitalize {
+  text-transform: capitalize;
+}
+
 /* CUSTOM CSS */
 
 /* 

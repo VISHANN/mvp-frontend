@@ -4,6 +4,7 @@ import Image from 'next/image'
 import ShelvesButton from '@/components/ShelvesBtn'
 import Link from 'next/link'
 import PrimaryLink from '@/components/PrimaryLink'
+import { useState } from 'react'
 
 const description = "Draws on more than forty interviews with Steve Jobs, as well as interviews with family members, friends, competitors, and colleagues, to offer a look at the co-founder and leading creative force behind the Apple computer company.\nThis biography shares the life and personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing."
 function truncate (text) {
@@ -19,6 +20,11 @@ function truncate (text) {
 }
 
 export default function Work() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  function handleClick (e) {
+    setIsVisible(state => !state);
+  }
   return (
     <main className={`container ${styles.main}`}>
       <div className={styles.gridWrap}>
@@ -52,12 +58,13 @@ export default function Work() {
             </div>
             <div className={styles.description}>
               <p>
-                {truncate(description)}
+                {(isVisible ? description : truncate(description))}
               </p>
-              <PrimaryLink 
-                href={'#'}> 
-                Show more
-              </PrimaryLink>
+              <button
+                className='link-primary capitalize'
+                onClick={handleClick} > 
+                {isVisible ? 'Show Less' : 'Show More'}
+              </button>
             </div>
           </div>
         </section>
