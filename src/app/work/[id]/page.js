@@ -5,6 +5,19 @@ import ShelvesButton from '@/components/ShelvesBtn'
 import Link from 'next/link'
 import PrimaryLink from '@/components/PrimaryLink'
 
+const description = "Draws on more than forty interviews with Steve Jobs, as well as interviews with family members, friends, competitors, and colleagues, to offer a look at the co-founder and leading creative force behind the Apple computer company.\nThis biography shares the life and personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing."
+function truncate (text) {
+  // vary the length of truncated text based on screen sizes.
+  const MAX = (document.documentElement.clientWidth < 760) ? 160 : 308;
+
+  if ( text.length < MAX) {
+    return text;
+  } else {
+    let subString = text.slice(0, MAX);
+    return (<>{subString.slice(0, subString.lastIndexOf(' '))} &hellip;</>);
+  }
+}
+
 export default function Work() {
   return (
     <main className={`container ${styles.main}`}>
@@ -38,10 +51,8 @@ export default function Work() {
               </h2>
             </div>
             <div className={styles.description}>
-              <p className="lead">
-                Draws on more than forty interviews with Steve Jobs, as well as interviews with family members, friends, competitors, and colleagues, to offer a look at the co-founder and leading creative force behind the Apple computer company.
-
-                This biography shares the life and personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing.
+              <p>
+                {truncate(description)}
               </p>
               <PrimaryLink 
                 href={'#'}> 
