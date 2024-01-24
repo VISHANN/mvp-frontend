@@ -1,10 +1,7 @@
-"use client"
 import styles from './page.module.css'
 import Image from 'next/image'
 import ShelvesButton from '@/components/ShelvesBtn'
-import Link from 'next/link'
 import PrimaryLink from '@/components/PrimaryLink'
-import { useState } from 'react'
 
 const description = "Draws on more than forty interviews with Steve Jobs, as well as interviews with family members, friends, competitors, and colleagues, to offer a look at the co-founder and leading creative force behind the Apple computer company.\nThis biography shares the life and personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing."
 function truncate (text) {
@@ -19,12 +16,38 @@ function truncate (text) {
   }
 }
 
-export default function Work() {
-  const [isVisible, setIsVisible] = useState(false);
+async function getWorkMetadata() {
+  const data = await fetch('https://openlibrary.org/works/OL45804W.json').then(res => res.json());
+  return data;
+}
 
-  function handleClick (e) {
-    setIsVisible(state => !state);
-  }
+export default async function Work() {
+  // const [isVisible, setIsVisible] = useState(false);
+  // const [work, setWork] = useState(null);
+
+  // function handleClick (e) {
+  //   setIsVisible(state => !state);
+  // }
+
+  // useEffect(() => {
+  //   fetch('https://openlibrary.org/works/OL45804W.json')
+  //   .then(res => res.json())
+  //   .then(data => { 
+  //     setWork(data);
+  //     console.log(data);
+  //   })
+  //   .catch(err => console.error(err))
+
+  // }, [])
+
+  // if (!work) {
+  //   return (
+  //     <>Loadin...</>
+  //   )
+  // }
+
+  const work = await getWorkMetadata();
+
   return (
     <main className={`container ${styles.main}`}>
       <div className={styles.gridWrap}>
@@ -46,7 +69,9 @@ export default function Work() {
         <section className={styles.col_9}>
           <div className={styles.work}>
             <div>
-              <h1  className={styles.title}>Steve Jobs</h1>
+              <h1  className={styles.title}>
+                {work.title}
+              </h1>
             </div>
             <div>
               <h2 className={styles.author}>
@@ -58,13 +83,13 @@ export default function Work() {
             </div>
             <div className={styles.description}>
               <p>
-                {(isVisible ? description : truncate(description))}
+                {description}
               </p>
-              <button
+              {/* <button
                 className='link-primary capitalize'
                 onClick={handleClick} > 
                 {isVisible ? 'Show Less' : 'Show More'}
-              </button>
+              </button> */}
             </div>
           </div>
         </section>
