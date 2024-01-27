@@ -3,7 +3,7 @@ import { UserContext } from "@/app/context";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
 
-export default function SocialLogin() {
+export default function SocialLogin({ setIsSignUp }) {
   const [user, dispatch] = useContext(UserContext);
   const router = useRouter();
 
@@ -26,7 +26,7 @@ export default function SocialLogin() {
       headers: { Authorization: `Bearer ${credentialResponse.credential}`},
       credentials: "include", 
     })
-      .then(res => handleFetchResponse(res, router))
+      .then(res => handleNewUser(res, setIsSignUp, credentialResponse.credential))
       .then(returnedUser => handleUser(returnedUser, dispatch, router))
       .then(() => router.push('/'))
       .catch(err => console.log(err));
@@ -35,11 +35,16 @@ export default function SocialLogin() {
     console.log(err)
   }
 }
-function handleFetchResponse(res, router) {
+function handleNewUser(res, setIsSignUp, token) {
   if(res.ok){
     return res.json()
   }
-  router.push('/signin/register');
+  
+  // set JWT Token in localStorage for later retrieval to send the final sign up request.
+  localStorage.setItem('google-jwt', JSON.stringify(token));
+
+  // set isSignUp to be true, so that we can render username input
+  setIsSignUp(true);
 }
 
 function handleUser(user, dispatch) {
