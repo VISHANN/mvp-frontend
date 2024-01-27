@@ -4,23 +4,44 @@ import ShelvesButton from '@/components/ShelvesBtn'
 import PrimaryLink from '@/components/PrimaryLink'
 import Description from './_components/Description'
 
-const description = "Draws on more than forty interviews with Steve Jobs, as well as interviews with family members, friends, competitors, and colleagues, to offer a look at the co-founder and leading creative force behind the Apple computer company.\nThis biography shares the life and personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing."
-
 async function getWorkMetadata() {
   const data = await fetch('https://openlibrary.org/works/OL45804W.json').then(res => res.json());
+  const authorsList = [];
+
+  // data.authors is an array of objects described below:
+  // {
+  //   author: {key: '/authors/ol4580W'},
+  //   type: {'/type/author_role'}
+  // }
+  
+  // await while we fetch names of all the authors using their respective keys 
+  for ( const e of data.authors ) {
+    const author = await fetch(`https://openlibrary.org${e.author.key}.json`).then(res => res.json())
+    authorsList.push({ given_name: author.personal_name, key: author.key});
+  }
+
+  // new authorsList to replace the authors in data.
+  data.authors = authorsList;
+
   return data;
 }
 
 export default async function Work() {
   const work = await getWorkMetadata();
-
-  console.log(work); // delete
   if (!work) {
     return (
       <>Loadin...</>
     )
   }
 
+  const authorLinks = work.authors.map( author => {
+    return (
+      <PrimaryLink 
+        href={"#"} >  
+        {author.given_name} 
+      </PrimaryLink>
+    )
+  })
   return (
     <main className={`container ${styles.main}`}>
       <div className={styles.gridWrap}>
@@ -48,10 +69,7 @@ export default async function Work() {
             </div>
             <div>
               <h2 className={styles.author}>
-                <PrimaryLink 
-                  href={"#"} >  
-                  Walter Isaacson 
-                </PrimaryLink>
+                {authorLinks}
               </h2>
             </div>
             <Description>
