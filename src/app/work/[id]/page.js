@@ -49,8 +49,8 @@ export default async function Work() {
           <div>
             <div className={styles.imgWrap}>
               <Image 
-                src="https://covers.openlibrary.org/b/id/12680694-L.jpg" 
-                alt="Steve Jobs Biography" 
+                src={`https://covers.openlibrary.org/b/id/${work.covers[0]}-M.jpg`}
+                alt={work.title} 
                 fill={true} />
             </div>
           </div>
