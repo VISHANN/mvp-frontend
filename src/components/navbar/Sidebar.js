@@ -57,9 +57,16 @@ export default function Sidebar() {
       </div>
       <div className={styles.bottom}>
         <div className={styles.navItem}>
-          <NavLink href="#">
-            <IoMenu /> Menu
-          </NavLink>
+          {isLoggedIn ? (
+            <NavLink href="#">
+              <IoMenu /> Menu
+            </NavLink>) : (
+            <NavLink href='/login'>
+              <button className="btn btn-primary">
+                Log In
+              </button>
+            </NavLink>
+          )}
         </div>
       </div>
     </nav>
