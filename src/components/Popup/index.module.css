@@ -1,0 +1,17 @@
+.popup {
+  width: 50vw;
+  height: 60vh;
+  padding: 2rem;
+  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  background-color: white;
+  border: 1px solid black;
+  border-radius: .5rem;
+
+  display: grid;
+  place-items: center;
+}
