@@ -61,7 +61,7 @@ export default function Sidebar() {
             <NavLink href="#">
               <IoMenu /> Menu
             </NavLink>) : (
-            <NavLink href='/login'>
+            <NavLink href='/signin'>
               <button className="btn btn-primary">
                 Log In
               </button>
