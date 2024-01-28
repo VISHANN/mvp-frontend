@@ -18,7 +18,7 @@ export default function SignUp () {
   )
 
   function handleClick(e) {
-    const token = localStorage.getItem('google-jwt'); 
+    const token = JSON.parse(localStorage.getItem('google-jwt')); 
 
     fetch('http://localhost:8000/api/v1/signup',{ 
       method: 'POST',

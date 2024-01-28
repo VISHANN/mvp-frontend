@@ -35,11 +35,12 @@ export default function SocialLogin({ setIsSignUp }) {
     console.log(err)
   }
 }
-function handleNewUser(res, setIsSignUp) {
+function handleNewUser(res, setIsSignUp, token) {
   if(res.ok){
     return res.json()
   }
 
+  localStorage.setItem('google-jwt', JSON.stringify(token))
   // set isSignUp to be true, so that we can render username input
   setIsSignUp(true);
 
