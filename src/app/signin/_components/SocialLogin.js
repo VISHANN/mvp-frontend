@@ -22,13 +22,15 @@ export default function SocialLogin({ setIsSignUp }) {
   )
 
   function handleSuccess(credentialResponse) {
+    const jwt = credentialResponse.credential;
+
     fetch('http://localhost:8000/api/signin',{ 
-      headers: { Authorization: `Bearer ${credentialResponse.credential}`},
+      headers: { Authorization: `Bearer ${jwt}`},
       credentials: "include", 
     })
-      .then(res => handleNewUser(res, setIsSignUp, credentialResponse.credential))
-      .then(returnedUser => loadUser(returnedUser, dispatch))
-      .then(() => router.push('/'))
+      .then(res => handleNewUser(res, setIsSignUp, jwt))
+      .then(user => loadUser(user, dispatch))
+      .then(() => router.push('/work/90'))
       .catch(logError);
   }
   function logError(err) {
@@ -40,7 +42,6 @@ function handleNewUser(res, setIsSignUp, token) {
     return res.json()
   }
 
-  localStorage.setItem('google-jwt', JSON.stringify(token))
   // set isSignUp to be true, so that we can render username input
   setIsSignUp(true);
 

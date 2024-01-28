@@ -18,20 +18,16 @@ export default function SignUp () {
   )
 
   function handleClick(e) {
-    const token = JSON.parse(localStorage.getItem('google-jwt')); 
-
     fetch('http://localhost:8000/api/v1/signup',{ 
       method: 'POST',
       headers: { 
-        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       credentials: "include", 
       body: JSON.stringify({ username }),
     })
       .then(res => res.json())
-      .then(returnedUser => handleUser(returnedUser, dispatch))
-      // .then(() => router.push('/'))
+      .then(user => loadUser(user, dispatch))
       .catch(err => console.log(err));
   }
   
@@ -39,16 +35,13 @@ export default function SignUp () {
     setUsername(e.target.value);
   }
 
-  function handleUser(user, dispatch) {
-    console.log(user);
+  function loadUser(user, dispatch) {
+
     const {given_name, picture} = user;
     dispatch({ type: 'ADD_USER', payload:{ given_name, picture }});
   
     // localStorage is built to retrieve string only, so stringify using JSON.stringify while 
     // saving to localStorage and JSON.parse while retrieving from localStorage
     localStorage.setItem('user', JSON.stringify(user));
-
-    // Clear localStorage jwt
-  }
-  
+  }  
 }
