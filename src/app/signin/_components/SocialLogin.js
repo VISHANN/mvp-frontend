@@ -16,7 +16,7 @@ export default function SocialLogin({ setIsSignUp }) {
           -> server sends that created user once the session has been initialized */ }
       <GoogleLogin
         onSuccess={credentialResponse => handleSuccess(credentialResponse)}
-        onError={handleError}
+        onError={logError}
       />
     </>
   )
@@ -27,27 +27,27 @@ export default function SocialLogin({ setIsSignUp }) {
       credentials: "include", 
     })
       .then(res => handleNewUser(res, setIsSignUp, credentialResponse.credential))
-      .then(returnedUser => handleUser(returnedUser, dispatch, router))
+      .then(returnedUser => loadUser(returnedUser, dispatch))
       .then(() => router.push('/'))
-      .catch(err => console.log(err));
+      .catch(logError);
   }
-  function handleError(err) {
+  function logError(err) {
     console.log(err)
   }
 }
-function handleNewUser(res, setIsSignUp, token) {
+function handleNewUser(res, setIsSignUp) {
   if(res.ok){
     return res.json()
   }
-  
-  // set JWT Token in localStorage for later retrieval to send the final sign up request.
-  localStorage.setItem('google-jwt', JSON.stringify(token));
 
   // set isSignUp to be true, so that we can render username input
   setIsSignUp(true);
+
+  // throw error to conclude fetch
+  throw new Error('User is not registered, let user to Sign Up by choosing a unique username.');
 }
 
-function handleUser(user, dispatch) {
+function loadUser(user, dispatch) {
   const {given_name, picture} = user;
   dispatch({ type: 'ADD_USER', payload:{ given_name, picture }});
 
