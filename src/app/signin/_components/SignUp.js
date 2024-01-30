@@ -1,19 +1,38 @@
 import { UserContext } from "@/app/context";
 import Input from "@/components/Input";
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 export default function SignUp () {
   const [username, setUsername] = useState('');
-  const [user, dispatch] = useContext(UserContext);
+  const [isUsernameValid, setIsUsernameValid] = useState(null);
+  const [, dispatch] = useContext(UserContext);
+
+  useEffect(() => {
+    if(!username) {
+      return ;
+    }
+
+    fetch('http://localhost:8000/api/v1/validate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({ username })
+    })
+    .then(res => handleResponse(res))
+    .then(data => console.log(data))
+  },[username])
 
   return(
     <section>
+      <h1 style={{marginBottom: '2rem'}}>Choose a username</h1>
       <Input 
         value={username}
         handleChange={handleChange}
         placeholder="Username" />
 
-      <button onClick={handleClick}>Continue</button>
+      <button style={{marginTop: '1rem'}} onClick={handleClick}>Continue</button>
     </section>
   )
 
@@ -44,4 +63,12 @@ export default function SignUp () {
     // saving to localStorage and JSON.parse while retrieving from localStorage
     localStorage.setItem('user', JSON.stringify(user));
   }  
+}
+
+function handleResponse(res) {
+  console.log(res.status)
+  if (res.ok) {
+    return res.json();
+  } 
+  throw new Error ('Could not fetch successfully');  
 }
