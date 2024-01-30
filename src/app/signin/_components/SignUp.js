@@ -1,4 +1,5 @@
 import { UserContext } from "@/app/context";
+import Input from "@/components/Input";
 import { useContext, useState } from "react"
 
 export default function SignUp () {
@@ -7,11 +8,10 @@ export default function SignUp () {
 
   return(
     <section>
-      <input 
-        type="text" 
+      <Input 
         value={username}
-        onChange={handleChange}
-        placeholder="Enter a username" />
+        handleChange={handleChange}
+        placeholder="Username" />
 
       <button onClick={handleClick}>Continue</button>
     </section>

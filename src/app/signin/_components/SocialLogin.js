@@ -28,7 +28,7 @@ export default function SocialLogin({ setIsSignUp }) {
       headers: { Authorization: `Bearer ${jwt}`},
       credentials: "include", 
     })
-      .then(res => handleNewUser(res, setIsSignUp, jwt))
+      .then(res => handleNewUser(res, setIsSignUp))
       .then(user => loadUser(user, dispatch))
       .then(() => router.push('/work/90'))
       .catch(logError);
@@ -37,7 +37,7 @@ export default function SocialLogin({ setIsSignUp }) {
     console.log(err)
   }
 }
-function handleNewUser(res, setIsSignUp, token) {
+function handleNewUser(res, setIsSignUp) {
   if(res.ok){
     return res.json()
   }
@@ -51,6 +51,7 @@ function handleNewUser(res, setIsSignUp, token) {
 
 function loadUser(user, dispatch) {
   const {given_name, picture} = user;
+
   dispatch({ type: 'ADD_USER', payload:{ given_name, picture }});
 
   // localStorage is built to retrieve string only, so stringify using JSON.stringify while 
