@@ -21,20 +21,31 @@ export default function SignUp () {
       body: JSON.stringify({ username })
     })
     .then(res => handleResponse(res))
-    .then(data => console.log(data))
+    .then(data => handleValidation(data))
+    .catch(err => console.log(err));
   },[username])
 
   return(
     <section>
       <h1 style={{marginBottom: '2rem'}}>Choose a username</h1>
       <Input 
+        id="username"
         value={username}
         handleChange={handleChange}
-        placeholder="Username" />
+        placeholder="Username" 
+        isValid={isUsernameValid} />
+      <label htmlFor="username" style={{ color: isUsernameValid ? 'var(--secondary-green)' : 'red'}}>
+        {isUsernameValid ? "Great name! It's not taken, so it's all yours." : "Sorry, this username is taken. Try another."}
+      </label>
 
       <button style={{marginTop: '1rem'}} onClick={handleClick}>Continue</button>
     </section>
   )
+
+  function handleValidation(data) {
+    console.log(data);
+    setIsUsernameValid(data.isValid);
+  }
 
   function handleClick(e) {
     fetch('http://localhost:8000/api/v1/signup',{ 
