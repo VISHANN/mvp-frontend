@@ -14,8 +14,8 @@ export default function SignIn() {
 
   return(
     <Popup>
-      {/* { isSignUp ? <SignUp /> : <SocialLogin setIsSignUp={(state) => setIsSignUp(state)}/>} */}
-      <SignUp />
+      { isSignUp ? <SignUp /> : <SocialLogin setIsSignUp={(state) => setIsSignUp(state)}/>}
+      {/* <SignUp /> */}
     </Popup>
   )
 }

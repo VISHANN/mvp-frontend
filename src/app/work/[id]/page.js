@@ -26,7 +26,7 @@ async function getWorkMetadata() {
   return data;
 }
 
-export default async function Work() {
+export default async function Work({ params }) {
   const work = await getWorkMetadata();
   if (!work) {
     return (
@@ -56,7 +56,8 @@ export default async function Work() {
           </div>
           <div className={styles.btnGroup}>
             <div>
-              <ShelvesButton />
+              <ShelvesButton 
+                workId={params.id}/>
             </div>
           </div>
         </section>

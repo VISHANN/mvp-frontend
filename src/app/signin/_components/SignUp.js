@@ -1,11 +1,14 @@
 import { UserContext } from "@/app/context";
 import Input from "@/components/Input";
+import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react"
 
 export default function SignUp () {
   const [username, setUsername] = useState('');
   const [isUsernameValid, setIsUsernameValid] = useState(null);
   const [, dispatch] = useContext(UserContext);
+
+  const router = useRouter();
 
   useEffect(() => {
     if(!username) {
@@ -73,6 +76,7 @@ export default function SignUp () {
     })
       .then(res => res.json())
       .then(user => loadUser(user, dispatch))
+      .then(() => router.push('work/90'))
       .catch(err => console.log(err));
   }
   
