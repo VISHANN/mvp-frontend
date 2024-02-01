@@ -21,7 +21,7 @@
 /* Validation colors */
 
 .valid > input:focus {
-  border-color: var(--primary-green);
+  border-color: var(--secondary-green);
 }
 .invalid > input:focus {
   border-color: red;

@@ -27,18 +27,32 @@ export default function SignUp () {
 
   return(
     <section>
-      <h1 style={{marginBottom: '2rem'}}>Choose a username</h1>
+      <h1 className="h2" style={{marginBottom: '.5rem'}}>One Last Step</h1>
+      <h2 className="h4" style={{marginBottom: '2rem'}}>Choose a username that whispers your story.</h2>
+      
       <Input 
         id="username"
         value={username}
         handleChange={handleChange}
         placeholder="Username" 
         isValid={isUsernameValid} />
+      
       <label htmlFor="username" style={{ color: isUsernameValid ? 'var(--secondary-green)' : 'red'}}>
-        {isUsernameValid ? "Great name! It's not taken, so it's all yours." : "Sorry, this username is taken. Try another."}
+        {isUsernameValid 
+          ? "Great name! It's not taken, so it's all yours." 
+          : (username.length < 3 || username.length > 20)
+          ? "Username must be between 3 and 20 characters."
+          : "Sorry, this username is taken. Try another."
+        } 
       </label>
 
-      <button style={{marginTop: '1rem'}} onClick={handleClick}>Continue</button>
+      <div style={{marginTop: '2rem'}}>
+        <button 
+          className="btn btn-primary" 
+          onClick={handleClick}>
+          Continue
+        </button>
+      </div>
     </section>
   )
 
