@@ -43,6 +43,9 @@ html {
   --primary-blue: #1877f2;
   --primary-green: #006241;
   --secodary-green: #00754a;
+
+  /* transition delay timers */
+  --transition-delay: .2s;
 }
 
 body {
@@ -74,6 +77,10 @@ body {
 .btn-primary {
   color:#fff;
   background-color: var(--primary-green);
+  transition: background-color var(--transition-delay) ease;
+}
+.btn-primary:disabled {
+  background-color: gray;
 }
 
 .link-primary {

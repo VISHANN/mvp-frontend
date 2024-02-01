@@ -49,7 +49,8 @@ export default function SignUp () {
       <div style={{marginTop: '2rem'}}>
         <button 
           className="btn btn-primary" 
-          onClick={handleClick}>
+          onClick={handleClick}
+          disabled={!isUsernameValid}>
           Continue
         </button>
       </div>
