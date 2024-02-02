@@ -11,9 +11,8 @@ const defaultShelf = {
 
 export default function ShelfBtn({ workId }) {
   const [shelf, setShelf] = useState(defaultShelf);
+  const [isOpen, setIsOpen] = useState(false);
 
-  console.log(workId);
-  
   useEffect(() => {
     fetch('http://localhost:8000/api/v1/u/shelves', {
       credentials: 'include'
@@ -42,23 +41,38 @@ export default function ShelfBtn({ workId }) {
 
   return(
     <div className={styles.shelfBtn}>
-      <button 
-        type='button' 
-        className={styles.primaryBtn}
-        onClick={() => ToggleShelf(shelf, workId)}>
-        {shelf.isShelved ? "S" : <MdBookmarkBorder /> }
-        {shelfName}
-      </button>
-      <span className={styles.secondaryBtn}>
-        <span className={styles.arrow}></span>
-      </span>
+      <div>
+        <button 
+          type='button' 
+          className={styles.primaryBtn}
+          onClick={() => ToggleShelf(shelf, workId)}>
+          {shelf.isShelved ? "S" : <MdBookmarkBorder /> }
+          {shelfName}
+        </button>
+        <span className={styles.secondaryBtn} onClick={() => setIsOpen(state => !state)}>
+          <span className={styles.arrow}></span>
+        </span>
+      </div>
+      {isOpen && (<div>
+        <hr></hr>
+        <ul>
+          <li 
+            id={1}
+            onClick={() => handleSelection(1)}>
+            1
+          </li>
+        </ul>
+      </div>)}
     </div>
   )
 
   function updateShelves(update) {
     // update = {
     //   type: 'ADD' || 'MOVE' || 'REMOVE',
-    //   payload: data
+    //   payload: {
+    //    shelfId,
+    //    workId,
+    //   }
     // }
     let body = {}, handleSuccess = {};
 
@@ -81,6 +95,16 @@ export default function ShelfBtn({ workId }) {
           }
         }
         break;
+
+      case 'MOVE':
+        body = {currentShelfId: shelf.id, targetShelfId: update.payload.shelfId, workId: update.payload.workId};
+        handleSuccess = (data) => {
+          if (data.code === 'success') {
+            setShelf({id: update.payload.shelfId, isShelved: true})
+            // setIsOpen(false);
+          }
+        }
+        break;
     }
   
     // fetch backend with body set by switch
@@ -97,6 +121,12 @@ export default function ShelfBtn({ workId }) {
       .catch(err => console.log(err));
   }
 
+  function handleSelection(shelfId) {
+    updateShelves({
+      type: 'MOVE',
+      payload: {shelfId, workId}
+    })
+  }
   function ToggleShelf(shelf, workId) {
     if (shelf.isShelved) {
       // remove workId from the shelf
