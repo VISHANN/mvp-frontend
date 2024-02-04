@@ -3,6 +3,7 @@
 import styles from './index.module.css'
 import { MdBookmarkBorder } from "react-icons/md"
 import { useEffect, useState } from 'react'
+import DropdownMenu from './DropdownMenu'
 
 const defaultShelf = {
   id: 0, 
@@ -53,16 +54,10 @@ export default function ShelfBtn({ workId }) {
           <span className={styles.arrow}></span>
         </span>
       </div>
-      {isOpen && (<div>
-        <hr></hr>
-        <ul>
-          <li 
-            id={1}
-            onClick={() => handleSelection(1)}>
-            1
-          </li>
-        </ul>
-      </div>)}
+      {isOpen && 
+        <DropdownMenu 
+          shelfId={shelf.id}
+          handleSelection={handleSelection} />}
     </div>
   )
 
