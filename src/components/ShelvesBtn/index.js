@@ -80,7 +80,7 @@ export default function ShelfBtn({ workId }) {
         handleSuccess = (data) => {
           if (data.code === 'success') {
             setShelf({id: update.payload.shelfId, isShelved: true})
-            // setIsOpen(false);
+            setIsOpen(false);
           }
         }
         break;
@@ -117,7 +117,6 @@ export default function ShelfBtn({ workId }) {
 
   function handleData (shelves, workId) {
     const { ownerShelfId } = checkShelvesForWork(shelves, workId);
-    console.log(ownerShelfId);
 
     if (ownerShelfId > -1) {
       // means the work is present in shelf with id as ownerShelfId. 

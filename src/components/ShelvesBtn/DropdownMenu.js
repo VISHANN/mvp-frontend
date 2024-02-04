@@ -1,4 +1,5 @@
 import { computeShelfName } from "./index";
+import styles from './index.module.css'
 
 export default function DropdownMenu ({ shelfId, handleSelection}) {
   const shelvesList = [...Array(4).keys()].map(i => {
@@ -7,7 +8,7 @@ export default function DropdownMenu ({ shelfId, handleSelection}) {
     }
     return (
       <li 
-        style={{cursor: 'pointer'}}
+        className={styles.dropdownItem}
         id={i}
         key={i}
         onClick={() => handleSelection(i)}>
@@ -18,7 +19,7 @@ export default function DropdownMenu ({ shelfId, handleSelection}) {
   return (
     <div>
       <hr></hr>
-      <ul>
+      <ul className={styles.dropdownMenu}>
         {shelvesList}
       </ul>
     </div>
