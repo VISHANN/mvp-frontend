@@ -13,6 +13,7 @@ const defaultShelf = {
 export default function ShelfBtn({ workId }) {
   const [shelf, setShelf] = useState(defaultShelf);
   const [isOpen, setIsOpen] = useState(false);
+  const shelfName = computeShelfName(shelf.id);
 
   useEffect(() => {
     fetch('http://localhost:8000/api/v1/u/shelves', {
@@ -22,23 +23,6 @@ export default function ShelfBtn({ workId }) {
       .then(data => handleData(data, workId))
       .catch(err => console.log(err))
   }, [])
-
-  let shelfName = ''
-  switch (shelf.id) {
-
-    case 0: 
-      shelfName = 'To Read';
-      break;
-    case 1:
-      shelfName = 'Reading Now';
-      break;
-    case 2:
-      shelfName = 'Have Read';
-      break;
-    case 3:
-      shelfName = "Didn't Finish";
-      break;
-  }
 
   return(
     <div className={styles.shelfBtn}>
@@ -152,4 +136,25 @@ function checkShelvesForWork(shelves, workId) {
     }
   }
   return { ownerShelfId: -1 };
+}
+
+export function computeShelfName(shelfId) {
+  let shelfName = ''
+
+  switch (shelfId) {
+    case 0: 
+      shelfName = 'To Read';
+      break;
+    case 1:
+      shelfName = 'Reading Now';
+      break;
+    case 2:
+      shelfName = 'Have Read';
+      break;
+    case 3:
+      shelfName = "Didn't Finish";
+      break;
+  }
+
+  return shelfName;
 }
