@@ -2,7 +2,7 @@
 
 import styles from './index.module.css'
 import { MdBookmarkBorder } from "react-icons/md"
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import DropdownMenu from './DropdownMenu'
 
 const defaultShelf = {
@@ -13,6 +13,8 @@ const defaultShelf = {
 export default function ShelfBtn({ workId }) {
   const [shelf, setShelf] = useState(defaultShelf);
   const [isOpen, setIsOpen] = useState(false);
+
+  const shelfBtnRef = useRef(null);
   const shelfName = computeShelfName(shelf.id);
 
   useEffect(() => {
@@ -24,8 +26,21 @@ export default function ShelfBtn({ workId }) {
       .catch(err => console.log(err))
   }, [])
 
+  useEffect(() => {
+    // add mousedown event listener to listen to page level events
+    document.addEventListener('mousedown', (e) => handleOutsideClick(e, shelfBtnRef, setIsOpen));
+
+    // return a cleaner function to clean the effect once the component unmounts
+    return () => {
+      document.removeEventListener('mousedown', (e) => handleOutsideClick(e, shelfBtnRef, setIsOpen));
+    }
+  }, [shelfBtnRef])
+
   return(
-    <div className={styles.shelfBtn}>
+    <div 
+      ref={shelfBtnRef}
+      className={styles.shelfBtn}>
+
       <div>
         <button 
           type='button' 
@@ -62,6 +77,7 @@ export default function ShelfBtn({ workId }) {
         handleSuccess = (data) => {
           if (data.code === 'success') {
             setShelf((state) => ({...state, isShelved: true}))
+            setIsOpen(false);
           }
         }
         break;
@@ -71,6 +87,7 @@ export default function ShelfBtn({ workId }) {
         handleSuccess = (data) => {
           if (data.code === 'success') {
             setShelf((state) => ({...state, isShelved: false}))
+            setIsOpen(false);
           }
         }
         break;
@@ -137,6 +154,12 @@ function checkShelvesForWork(shelves, workId) {
   return { ownerShelfId: -1 };
 }
 
+function handleOutsideClick(e, ref, setIsOpen) {
+  if(ref.current && !ref.current.contains(e.target)){
+    setIsOpen(false);
+    console.log('handler')
+  }
+}
 export function computeShelfName(shelfId) {
   let shelfName = ''
 
