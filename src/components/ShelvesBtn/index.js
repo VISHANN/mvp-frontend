@@ -3,7 +3,9 @@
 import styles from './index.module.css'
 import { MdBookmarkBorder, MdBookmark } from "react-icons/md"
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import DropdownMenu from './DropdownMenu'
+import { handleFetchResponse } from '@/app/lib'
 
 const defaultShelf = {
   id: 0, 
@@ -13,6 +15,7 @@ const defaultShelf = {
 export default function ShelfBtn({ workId }) {
   const [shelf, setShelf] = useState(defaultShelf);
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const shelfBtnRef = useRef(null);
   const shelfName = computeShelfName(shelf.id);
@@ -21,7 +24,7 @@ export default function ShelfBtn({ workId }) {
     fetch('http://localhost:8000/api/v1/u/shelves', {
       credentials: 'include'
     })
-      .then(res => res.json())
+      .then(res => handleFetchResponse(res))
       .then(data => handleData(data, workId))
       .catch(err => console.log(err))
   }, [])
@@ -112,7 +115,7 @@ export default function ShelfBtn({ workId }) {
       body: JSON.stringify(body),
       credentials: 'include'
     })
-      .then(res => res.json())
+      .then(res => handleFetchResponse(res))
       .then(data => handleSuccess(data))
       .catch(err => console.log(err));
   }
@@ -157,7 +160,6 @@ function checkShelvesForWork(shelves, workId) {
 function handleOutsideClick(e, ref, setIsOpen) {
   if(ref.current && !ref.current.contains(e.target)){
     setIsOpen(false);
-    console.log('handler')
   }
 }
 export function computeShelfName(shelfId) {
