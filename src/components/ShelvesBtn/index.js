@@ -1,7 +1,7 @@
 'use client'
 
 import styles from './index.module.css'
-import { MdBookmarkBorder } from "react-icons/md"
+import { MdBookmarkBorder, MdBookmark } from "react-icons/md"
 import { useEffect, useRef, useState } from 'react'
 import DropdownMenu from './DropdownMenu'
 
@@ -46,7 +46,7 @@ export default function ShelfBtn({ workId }) {
           type='button' 
           className={styles.primaryBtn}
           onClick={() => ToggleShelf(shelf, workId)}>
-          {shelf.isShelved ? "S" : <MdBookmarkBorder /> }
+          {shelf.isShelved ? <MdBookmark /> : <MdBookmarkBorder /> }
           {shelfName}
         </button>
         <span className={styles.secondaryBtn} onClick={() => setIsOpen(state => !state)}>
