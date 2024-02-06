@@ -9,8 +9,11 @@ async function handleFetchResponse (res) {
 
     switch (errCode) {
       case 'user_signup_incomplete':
-      alert(errText);
-      throw new Error(errCode);
+        alert(errText);
+        throw new Error(errCode);
+      case 'user_not_authenticated':
+        alert(errText)
+        throw new Error(errCode);
     }
   } 
 }
