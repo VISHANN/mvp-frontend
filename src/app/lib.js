@@ -3,6 +3,8 @@ async function handleFetchResponse (res) {
   if (res.ok) {
     return res.json();
   }
+
+  // delete
   console.log(res.status);
   if (res.status === 401) {
     const { errCode, errText } = await res.json();
