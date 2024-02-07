@@ -2,14 +2,17 @@
 
 import styles from './Sidebar.module.css'
 import { UserContext } from "@/app/context"
-import { useContext } from "react" 
+import { useContext, useState } from "react" 
 import Link from 'next/link'
 import UserProfile from '../UserProfile'
+import SignOut from '../SignOut'
+
 import { BiSearch } from 'react-icons/bi'
 import { RiHome7Line } from "react-icons/ri"
 import { IoMenu } from "react-icons/io5"
 import { MdBookmarkBorder } from "react-icons/md"
 import { LuSettings } from "react-icons/lu"
+
 
 
 export default function Sidebar() {
@@ -59,7 +62,7 @@ export default function Sidebar() {
         <div className={styles.navItem}>
           {isLoggedIn ? (
             <NavLink href="#">
-              <IoMenu /> Menu
+              <MenuBtn />
             </NavLink>) : (
             <NavLink href='/signin'>
               <button className="btn btn-primary">
@@ -80,5 +83,34 @@ function NavLink({ href, children }) {
     <Link href={href} className={styles.navLink}>
       {children}
     </Link>
+  )
+}
+
+function MenuBtn({}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return(
+    <div>
+      {isOpen && <Menu />}
+      <div onClick={handleClick}>
+        <IoMenu /> Menu
+      </div>
+    </div>
+  )
+
+  function handleClick(e) {
+    setIsOpen(state => !state);
+  }
+}
+
+function Menu () {
+  return (
+    <ul style={{ listStyle: 'none', padding: '0' }}>
+      <li>
+        <SignOut>
+          Sign Out
+        </SignOut>
+      </li>
+    </ul>
   )
 }

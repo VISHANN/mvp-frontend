@@ -16,6 +16,9 @@ async function handleFetchResponse (res) {
       case 'user_not_authenticated':
         alert(errText)
         throw new Error(errCode);
+      case 'session_not_destroyed':
+        alert(errText)
+        throw new Error(errCode);
     }
   } 
 }
