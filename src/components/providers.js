@@ -6,20 +6,23 @@ import { useRouter } from "next/navigation";
 import { UserContext } from "@/app/context";
 import { IconContext } from "react-icons";
 
+const initialUser = {
+  picture: "",
+  given_name: ""
+}
+
 function reducer(state, action) {
   switch(action.type) {
     case 'ADD_USER': 
       return action.payload;
+    case 'REMOVE_USER':
+      return initialUser;
     default:
       return state;
   }
 }
 
 export default function Providers ({ children }){
-  const initialUser = {
-    picture: "",
-    given_name: ""
-  }
   const [user, dispatch] = useReducer(reducer, initialUser);
   
 
