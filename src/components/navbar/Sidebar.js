@@ -12,7 +12,7 @@ import { RiHome7Line } from "react-icons/ri"
 import { IoMenu } from "react-icons/io5"
 import { MdBookmarkBorder } from "react-icons/md"
 import { LuSettings } from "react-icons/lu"
-
+  
 
 
 export default function Sidebar() {
@@ -58,17 +58,15 @@ export default function Sidebar() {
             </li> ) : null }
         </ul>
       </div>
-      <div className={styles.bottom}>
+      <div className={styles.navItems}>
         <div className={styles.navItem}>
-          {isLoggedIn ? (
-            <NavLink href="#">
-              <MenuBtn />
-            </NavLink>) : (
-            <NavLink href='/signin'>
-              <button className="btn btn-primary">
-                Log In
-              </button>
-            </NavLink>
+          {isLoggedIn ? 
+            ( <Menu /> ) : (
+              <NavLink href='/signin'>
+                <button className="btn btn-primary">
+                  Log In
+                </button>
+              </NavLink>
           )}
         </div>
       </div>
@@ -86,13 +84,16 @@ function NavLink({ href, children }) {
   )
 }
 
-function MenuBtn({}) {
+function Menu({}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return(
-    <div>
-      {isOpen && <Menu />}
-      <div onClick={handleClick}>
+    <div className={styles.menu}>
+      {isOpen && <DropdownMenu />}
+      {/* {<DropdownMenu></DropdownMenu>} */}
+      <div 
+        className={styles.navLink}
+        onClick={handleClick}>
         <IoMenu /> Menu
       </div>
     </div>
@@ -103,10 +104,10 @@ function MenuBtn({}) {
   }
 }
 
-function Menu () {
+function DropdownMenu () {
   return (
-    <ul style={{ listStyle: 'none', padding: '0' }}>
-      <li>
+    <ul className={styles.dropdownMenu}>
+      <li className={styles.dropdownOption}>
         <SignOut>
           Sign Out
         </SignOut>

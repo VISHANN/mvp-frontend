@@ -22,12 +22,13 @@
 .navItem {
   display: flex;
   align-items: center;
-  padding: .7rem ;
+  padding: .7rem;
 }
 .navLink {
   display: inline-flex;
   align-items: center;
   gap: .8rem;
+  width: 100%;
 }
 
 .navLink .react-icon {
@@ -58,4 +59,19 @@
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.menu {
+  width: 100%;
+}
+
+.dropdownMenu {
+  list-style: none;
+  margin: 0;
+  margin-bottom: 1rem;
+  padding: 1rem 0 1rem .75rem;
+  border-radius: 0.5rem;
+
+  /* favorite box shadow */
+  box-shadow: 0 4px 12px rgba(var(--primary-black),.15);
 }

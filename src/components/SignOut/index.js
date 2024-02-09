@@ -6,11 +6,9 @@ export default function SignOut ({ children }) {
   const [, dispatch] = useContext(UserContext);
 
   return(
-    <div>
-      <button onClick={() => handleSignOut(dispatch)}>
-        { children ? children : 'Sign Out' }
-      </button>
-    </div>
+    <button onClick={() => handleSignOut(dispatch)}>
+      { children ? children : 'Sign Out' }
+    </button>
   )
 }
 function handleSignOut (dispatch) {

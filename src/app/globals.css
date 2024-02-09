@@ -44,6 +44,9 @@ html {
   --primary-green: #006241;
   --secodary-green: #00754a;
 
+  /* rgba color used for box-shadow of menu button */
+  --primary-black: 0, 0, 0; 
+
   /* transition delay timers */
   --transition-delay: .2s;
 }
