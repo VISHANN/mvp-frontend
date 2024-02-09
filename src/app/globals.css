@@ -18,6 +18,7 @@ img, picture, video, canvas {
 }
 input, button, textarea, select {
   font: inherit;
+  padding: 0;
 }
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
@@ -46,9 +47,12 @@ html {
 
   /* rgba color used for box-shadow of menu button */
   --primary-black: 0, 0, 0; 
+  --secondary-black: 219, 219, 219, .4;
 
   /* transition delay timers */
   --transition-delay: .2s;
+
+  --border-radius-2: .5rem
 }
 
 body {
@@ -71,19 +75,25 @@ body {
 
 .btn {
   display: inline-block;
+  width: 100%;
   padding: 6px 12px;
   margin-bottom: 0;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: .5rem;
   border: 1px solid transparent;
+  transition: background-color var(--transition-delay) ease;
 }
 .btn-primary {
   color:#fff;
   background-color: var(--primary-green);
-  transition: background-color var(--transition-delay) ease;
 }
 .btn-primary:disabled {
   background-color: gray;
+}
+
+.btn-outline-dark {
+  color: var(--primary-black);
+  background-color: rgba(var(--secondary-black));
 }
 
 .link-primary {

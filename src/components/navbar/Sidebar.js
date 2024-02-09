@@ -74,23 +74,12 @@ export default function Sidebar() {
   )
 }
 
-// Separate concerns by rebasing navLink component for both navbars.
-
-function NavLink({ href, children }) {
-  return (
-    <Link href={href} className={styles.navLink}>
-      {children}
-    </Link>
-  )
-}
-
 function Menu({}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return(
     <div className={styles.menu}>
       {isOpen && <DropdownMenu />}
-      {/* {<DropdownMenu></DropdownMenu>} */}
       <div 
         className={styles.navLink}
         onClick={handleClick}>
@@ -108,10 +97,33 @@ function DropdownMenu () {
   return (
     <ul className={styles.dropdownMenu}>
       <li className={styles.dropdownOption}>
-        <SignOut>
-          Sign Out
-        </SignOut>
+        <NavLink>
+          <SignOut />
+        </NavLink>
+      </li>
+      <li className={styles.dropdownOption}>
+        <NavLink
+          href={'#'}>
+          Settings
+        </NavLink>
       </li>
     </ul>
+  )
+}
+
+// Separate concerns by rebasing navLink component for both navbars.
+
+function NavLink({ href, children }) {
+  function handleClick(e) {
+    e.preventDefault()
+  }
+
+  return (
+    <Link 
+      href={href ? href : '#'}
+      onClick={!href && handleClick} 
+      className={styles.navLink}>
+      {children}
+    </Link>
   )
 }

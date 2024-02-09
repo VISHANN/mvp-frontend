@@ -2,11 +2,21 @@ import { handleFetchResponse } from "@/app/lib"
 import { useContext } from "react";
 import { UserContext } from "@/app/context";
 
+const style = {
+  width: '100%',
+  border: 'none',
+  background: 'transparent',
+  textAlign: 'left',
+  cursor: 'pointer',
+}
+
 export default function SignOut ({ children }) {
   const [, dispatch] = useContext(UserContext);
 
   return(
-    <button onClick={() => handleSignOut(dispatch)}>
+    <button 
+      style={style}
+      onClick={() => handleSignOut(dispatch)}>
       { children ? children : 'Sign Out' }
     </button>
   )
@@ -27,5 +37,5 @@ function handleSuccess (message, dispatch) {
     return dispatch({ type: 'REMOVE_USER' });
   }
 
-  return console.log(message.code);
+  return alert(message.code);
 }
