@@ -21,6 +21,7 @@ async function getWorkMetadata() {
   }
 
   // new authorsList to replace the authors in data.
+  // authorsList is a [{ given_name, key }]
   data.authors = authorsList;
 
   return data;
@@ -37,6 +38,7 @@ export default async function Work({ params }) {
   const authorLinks = work.authors.map( author => {
     return (
       <PrimaryLink 
+        key={author.key}
         href={"#"} >  
         {author.given_name} 
       </PrimaryLink>

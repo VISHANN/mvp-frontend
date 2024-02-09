@@ -23,7 +23,7 @@ export default function Description ({ children }) {
         {(isVisible) ? children : truncate(children)}
       </p>
       <button
-        className='link-primary capitalize'
+        className='link capitalize'
         onClick={handleClick} > 
         {isVisible ? 'Show Less' : 'Show More'}
       </button>

@@ -43,7 +43,8 @@ html {
 :root {
   --primary-blue: #1877f2;
   --primary-green: #006241;
-  --secodary-green: #00754a;
+  --secondary-green: #1E3932;
+  --accent-green: #00754a;
 
   /* rgba color used for box-shadow of menu button */
   --primary-black: 0, 0, 0; 
@@ -96,12 +97,17 @@ body {
   background-color: rgba(var(--secondary-black));
 }
 
-.link-primary {
+.link {
+  cursor: pointer;
   padding: 0;
   margin: 0;
   border: none;
   background: transparent;
-  color: var(--primary-green);
+  color: var(--accent-green);
+}
+.link:hover,
+.link:focus-within {
+  color: var(--secondary-green);
 }
 .capitalize {
   text-transform: capitalize;

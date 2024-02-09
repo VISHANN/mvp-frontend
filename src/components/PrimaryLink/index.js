@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function PrimaryLink({ href, children }) {
   return (
-    <Link href={href} className="link-primary">
+    <Link href={href} className="link">
       {children}
     </Link>
   )
