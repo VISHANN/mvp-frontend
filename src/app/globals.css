@@ -105,8 +105,7 @@ body {
   background: transparent;
   color: var(--accent-green);
 }
-.link:hover,
-.link:focus-within {
+.link:hover{
   color: var(--secondary-green);
 }
 .capitalize {
