@@ -46,6 +46,40 @@
   text-align: center;
 }
 
+.radio {
+  position: fixed;
+  width: 1px;
+  left: 0;
+  bottom: 0;
+}
+
+.ratingButtons {
+  display: flex;
+  justify-content: space-evenly;
+}
+.ratingBtn {
+  padding: 1rem;
+}
+.ratingBtn > .thumbs {
+  width: 70px;
+  height: 70px;
+  padding: 1rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.caption {
+  text-align: center;
+}
+.thumbs {
+  transition: background-color .2s ease-in;
+}
+
+.thumbs:hover,
+.thumbs:focus{
+  background-color: rgba(var(--secondary-black));
+}
+
 @media screen and (max-width: 760px) {
   .gridWrap {
     grid-template-columns: 1fr;

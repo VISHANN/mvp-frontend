@@ -61,6 +61,19 @@ export default async function Work({ params }) {
               {work.publication.publishers[0] && <span><span> • </span> Published by {work.publication.publishers[0]}</span>}
             </div>
           </div>
+          <div className={styles.review}>
+            <PrimaryLink
+              href={{
+                pathname: `/review/${params.id}`,
+                query: {
+                  img: `https://covers.openlibrary.org/b/id/${work.covers[0]}-M.jpg`,
+                  title: work.title,
+                  authors: JSON.stringify(work.authors)
+                }
+              }}>
+              Review this work.
+            </PrimaryLink>
+          </div>
         </section>
       </div>
     </main> 
