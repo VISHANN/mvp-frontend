@@ -49,7 +49,7 @@ export default function Review({ params, searchParams }) {
           <div>
             <form>
               <div>
-                <h4>How would you rate this book? </h4>
+                <h4 className={styles.h4}>How would you rate this book? </h4>
                 <div className={styles.ratingButtons}>
                   {[1,2,0].map(ratingId => {
                     return (
@@ -70,6 +70,14 @@ export default function Review({ params, searchParams }) {
                   })}
                 </div>
               </div>
+              <div>
+                <h4 className={styles.h4}>
+                  Tell us more about your experience of reading {searchParams.title}.
+                </h4>
+                <TextareaInput 
+                  value={review.text} 
+                  handleChange={handleRatingChange} />
+              </div>
             </form>
           </div>
         </section>  
@@ -77,10 +85,11 @@ export default function Review({ params, searchParams }) {
     </article>
   )
   function handleRatingChange(e) {
-    console.log(e.target.value);
+    console.log(e.target.name);
+
     setReview(review => ({
       ...review,
-      rating: e.target.value
+      [e.target.name]: e.target.value
     }))
   }
 }
@@ -88,7 +97,7 @@ export default function Review({ params, searchParams }) {
 function generateInitialState () {
   return {
     rating: null,
-
+    text: ''
   }
 }
 
@@ -118,5 +127,15 @@ function RatingBtn({ btnId }) {
         {caption}
       </p>
     </div>
+  )
+}
+
+function TextareaInput({ value, handleChange }) {
+  return (
+    <textarea 
+      className={styles.reviewText} 
+      name="text"
+      value={value} 
+      onChange={handleChange} />
   )
 }
