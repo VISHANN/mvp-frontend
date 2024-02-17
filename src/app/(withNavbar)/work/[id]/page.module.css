@@ -87,6 +87,12 @@ textarea.reviewText{
   padding: .5rem;
   resize: none;
 }
+.moods {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  column-count: 3;
+}
 
 .h4 {
   font-size: 1.2rem;
