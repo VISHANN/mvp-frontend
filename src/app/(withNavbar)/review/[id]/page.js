@@ -3,7 +3,7 @@ import styles from '../../work/[id]/page.module.css'
 import Image from 'next/image';
 import PrimaryLink from '@/components/PrimaryLink';
 import { useEffect, useState } from 'react';
-import { Ratings } from './_components';
+import { Ratings, TextareaInput } from './_components';
 
 export default function Review({ params, searchParams }) {
   const [review, setReview] = useState(generateInitialState);
@@ -144,17 +144,6 @@ function generateInitialState () {
     moods: [],
     pace: null
   }
-}
-
-
-function TextareaInput({ value, handleChange }) {
-  return (
-    <textarea 
-      className={styles.reviewText} 
-      name="text"
-      value={value} 
-      onChange={handleChange} />
-  )
 }
 
 function Moods({ value, moodsList, handleChange }) {
