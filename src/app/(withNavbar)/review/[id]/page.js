@@ -7,19 +7,18 @@ import { BsHandThumbsUp, BsHandThumbsDown, BsHandThumbsUpFill, BsHandThumbsDownF
 
 export default function Review({ params, searchParams }) {
   const [review, setReview] = useState(generateInitialState);
-  const [moodsList, setMoodsList] = useState(null);
+  const [reviewProps, setReviewProps] = useState(null);
   
   console.log(review);
   
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/review/moods`)
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/review/props`)
     .then(res => res.json())
-    .then(data => {
-      data.moods.sort((a, b) => a.id - b.id)
-      setMoodsList(data.moods);
+    .then(reviewProps => {
+      setReviewProps(reviewProps);
       setReview(review => ({
         ...review,
-        moods: Array(data.moods.length).fill(false)
+        moods: Array(reviewProps.moods.length).fill(false)
       }));
       return;
     })
@@ -37,7 +36,7 @@ export default function Review({ params, searchParams }) {
     )
   })
   
-  if (!moodsList) {
+  if (!reviewProps) {
     return (
       <main className='container'>
         <h4 className="h4">
@@ -110,7 +109,16 @@ export default function Review({ params, searchParams }) {
                   This book would be perfect for someone who is in the mood for something
                 </h4>
                 <Moods 
-                  moodsList={moodsList}
+                  moodsList={reviewProps.moods}
+                  handleChange={handleRatingChange} />
+              </div>
+              <div>
+                <h4 className={styles.h4}>
+                  How would you say was the pace of the book?
+                </h4>
+                <Pace 
+                  stateValue={review.pace}
+                  paceProps={reviewProps.pace}
                   handleChange={handleRatingChange} />
               </div>
             </form>
@@ -146,6 +154,7 @@ function generateInitialState () {
     rating: null,
     text: '',
     moods: [],
+    pace: null
   }
 }
 
@@ -205,6 +214,28 @@ function Moods({ moodsList, handleChange }) {
           </label>
         </li>
       ))}
+    </ul>
+  )
+}
+
+function Pace({ stateValue, paceProps, handleChange }) {
+  let paceOptions = paceProps.map(pace => (
+    <li key={pace.id}>
+        <input 
+          id={`pace_${pace.id}`}
+          name='pace'
+          type="radio"
+          value={pace.id}
+          onChange={handleChange}
+          checked={stateValue === pace.id} />
+        <label htmlFor={`pace_${pace.id}`}>
+          {pace.name} 
+        </label>
+      </li>
+  ))
+  return (
+    <ul className={styles.moods}>
+      {paceOptions}
     </ul>
   )
 }
