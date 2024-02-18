@@ -46,58 +46,6 @@
   text-align: center;
 }
 
-.radio {
-  position: fixed;
-  width: 1px;
-  left: 0;
-  bottom: 0;
-}
-
-.ratingButtons {
-  display: flex;
-  justify-content: space-evenly;
-}
-.ratingBtn {
-  padding: 1rem;
-}
-.ratingBtn > .thumbs {
-  width: 70px;
-  height: 70px;
-  padding: 1rem;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-}
-.caption {
-  text-align: center;
-}
-.thumbs {
-  transition: background-color .2s ease-in;
-}
-.thumbs:hover,
-.thumbs:focus{
-  background-color: rgba(var(--secondary-black));
-}
-.thumbs > * {
-  width: 2rem;
-}
-textarea.reviewText{
-  width: 100%;
-  height: 10rem;
-  padding: .5rem;
-  resize: none;
-}
-.moods {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  column-count: 3;
-}
-
-.h4 {
-  font-size: 1.2rem;
-  margin-block: 1rem;
-}
 @media screen and (max-width: 760px) {
   .gridWrap {
     grid-template-columns: 1fr;

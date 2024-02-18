@@ -1,34 +1,5 @@
 import { BsHandThumbsUp, BsHandThumbsDown, BsHandThumbsUpFill, BsHandThumbsDownFill } from "react-icons/bs";
-import styles from '../../../work/[id]/page.module.css'
-
-function RatingBtn({ btnId }) {
-  let caption, icon;
-
-  switch (btnId) {
-    case '0':
-      icon = (<BsHandThumbsDown />)
-      caption = 'dislike'
-      break;
-    case '1': 
-      icon = (<BsHandThumbsUp />)
-      caption = 'like';
-      break;
-    case '2':
-      icon = (<BsHandThumbsUpFill />)
-      caption = 'love it';
-      break;
-  }
-  return (
-    <div className={styles.ratingBtn}>
-      <div className={styles.thumbs}>
-        {icon}
-      </div>
-      <p className={styles.caption}>
-        {caption}
-      </p>
-    </div>
-  )
-}
+import styles from './index.module.css'
 
 export default function Ratings({ value, ratingProps, handleChange }) {
   return(
@@ -46,11 +17,37 @@ export default function Ratings({ value, ratingProps, handleChange }) {
               onChange={handleChange} />
       
             <label htmlFor={`rating_${rating.id}`}>
-              <RatingBtn btnId={rating.id} />
+              <RatingBtn rating={rating} />
             </label>
         </div>
         )
       })}
+    </div>
+  )
+}
+
+function RatingBtn({ rating }) {
+  let caption = rating.caption, icon;
+
+  switch (rating.id) {
+    case '0':
+      icon = (<BsHandThumbsDown />)
+      break;
+    case '1': 
+      icon = (<BsHandThumbsUp />)
+      break;
+    case '2':
+      icon = (<BsHandThumbsUpFill />)
+      break;
+  }
+  return (
+    <div className={styles.ratingBtn}>
+      <div className={styles.thumbs}>
+        {icon}
+      </div>
+      <p className={styles.caption}>
+        {caption}
+      </p>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import styles from '../../../work/[id]/page.module.css'
+import styles from './index.module.css'
 
 
 export default function TextareaInput({ value, handleChange }) {
