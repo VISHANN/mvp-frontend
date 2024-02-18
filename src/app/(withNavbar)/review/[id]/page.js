@@ -109,6 +109,7 @@ export default function Review({ params, searchParams }) {
                   This book would be perfect for someone who is in the mood for something
                 </h4>
                 <Moods 
+                  value={review.moods}
                   moodsList={reviewProps.moods}
                   handleChange={handleRatingChange} />
               </div>
@@ -117,7 +118,7 @@ export default function Review({ params, searchParams }) {
                   How would you say was the pace of the book?
                 </h4>
                 <Pace 
-                  stateValue={review.pace}
+                  value={review.pace}
                   paceProps={reviewProps.pace}
                   handleChange={handleRatingChange} />
               </div>
@@ -197,7 +198,7 @@ function TextareaInput({ value, handleChange }) {
   )
 }
 
-function Moods({ moodsList, handleChange }) {
+function Moods({ value, moodsList, handleChange }) {
   return (
     <ul className={styles.moods}>
       {moodsList.map((mood, index) => (
@@ -207,7 +208,8 @@ function Moods({ moodsList, handleChange }) {
             type='checkbox'
             value={mood.id}
             id={`mood_id_${mood.id}`}
-            onChange={(e) => handleChange(e)} />
+            checked={value[mood.id]}
+            onChange={handleChange} />
 
           <label htmlFor={`mood_id_${mood.id}`}>
             {mood.name}
@@ -218,7 +220,7 @@ function Moods({ moodsList, handleChange }) {
   )
 }
 
-function Pace({ stateValue, paceProps, handleChange }) {
+function Pace({ value, paceProps, handleChange }) {
   let paceOptions = paceProps.map(pace => (
     <li key={pace.id}>
         <input 
@@ -227,7 +229,7 @@ function Pace({ stateValue, paceProps, handleChange }) {
           type="radio"
           value={pace.id}
           onChange={handleChange}
-          checked={stateValue === pace.id} />
+          checked={value === pace.id} />
         <label htmlFor={`pace_${pace.id}`}>
           {pace.name} 
         </label>
