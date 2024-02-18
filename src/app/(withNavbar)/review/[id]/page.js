@@ -3,7 +3,7 @@ import styles from '../../work/[id]/page.module.css'
 import Image from 'next/image';
 import PrimaryLink from '@/components/PrimaryLink';
 import { useEffect, useState } from 'react';
-import { Ratings, TextareaInput } from './_components';
+import { Ratings, TextareaInput, Moods } from './_components';
 
 export default function Review({ params, searchParams }) {
   const [review, setReview] = useState(generateInitialState);
@@ -144,28 +144,6 @@ function generateInitialState () {
     moods: [],
     pace: null
   }
-}
-
-function Moods({ value, moodsList, handleChange }) {
-  return (
-    <ul className={styles.moods}>
-      {moodsList.map((mood, index) => (
-        <li key={mood.id}>
-          <input 
-            name='moods'
-            type='checkbox'
-            value={mood.id}
-            id={`mood_id_${mood.id}`}
-            checked={value[mood.id]}
-            onChange={handleChange} />
-
-          <label htmlFor={`mood_id_${mood.id}`}>
-            {mood.name}
-          </label>
-        </li>
-      ))}
-    </ul>
-  )
 }
 
 function Pace({ value, paceProps, handleChange }) {
