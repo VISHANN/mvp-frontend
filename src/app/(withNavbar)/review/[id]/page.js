@@ -75,26 +75,13 @@ export default function Review({ params, searchParams }) {
           <div>
             <form>
               <div>
-                <h4 className={styles.h4}>How would you rate this book? </h4>
-                <div className={styles.ratingButtons}>
-                  {[1,2,0].map(ratingId => {
-                    return (
-                      <div key={ratingId}>
-                        <label htmlFor={ratingId}>
-                          <input 
-                            className={styles.radio}
-                            type="radio"
-                            name='rating'
-                            id={ratingId}
-                            value={ratingId}
-                            onChange={handleRatingChange} />
-                  
-                          <RatingBtn btnId={ratingId} />
-                        </label>
-                    </div>
-                    )
-                  })}
-                </div>
+                <h4 className={styles.h4}>
+                  How would you rate this book? 
+                </h4>
+                <Ratings 
+                  value={review.rating}
+                  ratingProps={reviewProps.rating}
+                  handleChange={handleRatingChange} />
               </div>
               <div>
                 <h4 className={styles.h4}>
@@ -163,15 +150,15 @@ function RatingBtn({ btnId }) {
   let caption, icon;
 
   switch (btnId) {
-    case 0:
+    case '0':
       icon = (<BsHandThumbsDown />)
       caption = 'dislike'
       break;
-    case 1: 
+    case '1': 
       icon = (<BsHandThumbsUp />)
       caption = 'like';
       break;
-    case 2:
+    case '2':
       icon = (<BsHandThumbsUpFill />)
       caption = 'love it';
       break;
@@ -184,6 +171,31 @@ function RatingBtn({ btnId }) {
       <p className={styles.caption}>
         {caption}
       </p>
+    </div>
+  )
+}
+
+function Ratings({ value, ratingProps, handleChange }) {
+  return(
+    <div className={styles.ratingButtons}>
+      {ratingProps.map(rating => {
+        return (
+          <div key={rating.id}>
+            <input 
+              type="radio"
+              name='rating'
+              id={`rating_${rating.id}`}
+              className={styles.radio}
+              value={rating.id}
+              checked={value === rating.id}
+              onChange={handleChange} />
+      
+            <label htmlFor={`rating_${rating.id}`}>
+              <RatingBtn btnId={rating.id} />
+            </label>
+        </div>
+        )
+      })}
     </div>
   )
 }
