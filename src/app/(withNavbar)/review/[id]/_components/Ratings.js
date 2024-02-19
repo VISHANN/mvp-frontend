@@ -11,13 +11,15 @@ export default function Ratings({ value, ratingProps, handleChange }) {
               type="radio"
               name='rating'
               id={`rating_${rating.id}`}
-              className={styles.radio}
+              className={styles.rating}
               value={rating.id}
               checked={value === rating.id}
               onChange={handleChange} />
       
             <label htmlFor={`rating_${rating.id}`}>
-              <RatingBtn rating={rating} />
+              <RatingBtn 
+                value={value}
+                rating={rating} />
             </label>
         </div>
         )
@@ -26,18 +28,18 @@ export default function Ratings({ value, ratingProps, handleChange }) {
   )
 }
 
-function RatingBtn({ rating }) {
+function RatingBtn({ value, rating }) {
   let caption = rating.caption, icon;
 
   switch (rating.id) {
     case '0':
-      icon = (<BsHandThumbsDown />)
+      icon = (value === '0' ? <BsHandThumbsDownFill /> : <BsHandThumbsDown />)
       break;
     case '1': 
-      icon = (<BsHandThumbsUp />)
+      icon = (value === '1' ? <BsHandThumbsUpFill /> : <BsHandThumbsUp />)
       break;
     case '2':
-      icon = (<BsHandThumbsUpFill />)
+      icon = (value === '2' ? <BsHandThumbsUpFill /> : <BsHandThumbsUp />)
       break;
   }
   return (
