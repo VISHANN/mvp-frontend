@@ -45,10 +45,12 @@ html {
   --primary-green: #006241;
   --secondary-green: #1E3932;
   --accent-green: #00754a;
-
+  
   /* rgba color used for box-shadow of menu button */
   --primary-black: 0, 0, 0; 
   --secondary-black: 219, 219, 219, .4;
+  --charcoal-black: 0, 0, 0, .7;
+  --brand-red: 255, 48, 64;
 
   /* transition delay timers */
   --transition-delay: .2s;
@@ -134,6 +136,29 @@ body {
   height: 100%;
   width: 1.5rem;
 }
+
+/* select double thumbs icon */
+label[for="rating_2"] .react-icon {
+  position: absolute;
+  /* border: 1px solid black; */
+  fill: white;
+  stroke: rgba(var(--charcoal-black));
+  stroke-width: 1px;
+  stroke-linejoin: round;
+}
+/* select the first thumbs up amongst the two */
+label[for="rating_2"] .react-icon:first-child {
+  transform: translate3d(-30%, 7%, 0);
+  z-index: 10;
+}
+#rating_2:checked + label .react-icon {
+  stroke: white;
+  fill: var(--primary-green);
+}
+#rating_0:checked + label .react-icon {
+  fill: rgba(var(--brand-red));
+}
+
 @media screen and (max-width: 760px) {
   .react-icon {
     width: 1rem;
