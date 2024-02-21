@@ -64,3 +64,7 @@ textarea.reviewText{
   margin: 0;
   column-count: 3;
 }
+
+.submitBtn {
+  width: fit-content;
+}

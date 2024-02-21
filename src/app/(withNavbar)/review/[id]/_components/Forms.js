@@ -1,6 +1,7 @@
 import { handleFetchResponse } from "@/app/lib";
 import { useEffect, useState } from "react";
 import { Ratings, TextareaInput, Moods, Pace } from "./";
+import styles from "./index.module.css";
 
 export default function Form({ workId, title }) {
   const [review, setReview] = useState(generateInitialState);
@@ -63,8 +64,12 @@ export default function Form({ workId, title }) {
           handleChange={handleChange}
         />
       </div>
-      <div>
-        <button onClick={(e) => handleSubmit(e, workId, review)}>
+      <div className={styles.submitBtn}>
+        <button
+          onClick={(e) => handleSubmit(e, workId, review)}
+          className="btn btn-primary"
+          disabled={review.rating === null}
+        >
           Submit Review
         </button>
       </div>
