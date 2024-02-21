@@ -10,18 +10,18 @@ async function handleFetchResponse(res) {
   }
 
   if (res.status === 401) {
-    const { errCode, errText } = await res.json();
+    const { code, text } = await res.json();
 
-    switch (errCode) {
+    switch (code) {
       case "user_signup_incomplete":
-        alert(errText);
-        throw new Error(errCode);
+        alert(text);
+        throw new Error(code);
       case "user_not_authenticated":
-        alert(errText);
-        throw new Error(errCode);
+        alert(text);
+        throw new Error(code);
       case "session_not_destroyed":
-        alert(errText);
-        throw new Error(errCode);
+        alert(text);
+        throw new Error(code);
     }
   } else if (res.status === 422) {
     const { code, text } = await res.json();
