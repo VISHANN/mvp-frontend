@@ -1,11 +1,13 @@
 import { handleFetchResponse } from "@/app/lib";
 import { useEffect, useState } from "react";
 import { Ratings, TextareaInput, Moods, Pace } from "./";
+import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
 
 export default function Form({ workId, title }) {
   const [review, setReview] = useState(generateInitialState);
   const [reviewProps, setReviewProps] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/review/props`)
@@ -66,7 +68,7 @@ export default function Form({ workId, title }) {
       </div>
       <div className={styles.submitBtn}>
         <button
-          onClick={(e) => handleSubmit(e, workId, review)}
+          onClick={(e) => handleSubmit(e, workId, review, router)}
           className="btn btn-primary"
           disabled={review.rating === null}
         >
@@ -106,7 +108,7 @@ function generateInitialState() {
   };
 }
 
-function handleSubmit(e, workId, reviewState) {
+function handleSubmit(e, workId, reviewState, router) {
   e.preventDefault();
 
   const review = { ...reviewState };
@@ -129,6 +131,10 @@ function handleSubmit(e, workId, reviewState) {
     body: JSON.stringify(review),
   })
     .then((res) => handleFetchResponse(res))
-    .then((data) => console.log(data))
+    .then((data) => handleSuccess(data))
     .catch((err) => console.log(err));
+
+  function handleSuccess(data) {
+    return router.back();
+  }
 }
