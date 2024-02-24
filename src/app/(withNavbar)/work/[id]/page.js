@@ -6,7 +6,7 @@ import Description from "./_components/Description";
 import ReviewButton from "./_components/ReviewButton";
 
 export default async function Work({ params }) {
-  const work = await getWorkMetadata();
+  const work = await getWorkMetadata(params.id);
   if (!work) {
     return <>Loadin...</>;
   }
@@ -75,8 +75,8 @@ export default async function Work({ params }) {
   );
 }
 
-async function getWorkMetadata() {
-  const data = await fetch("https://openlibrary.org/works/OL45804W.json").then(
+async function getWorkMetadata(workId) {
+  const data = await fetch(`https://openlibrary.org/works/${workId}.json`).then(
     (res) => res.json()
   );
   const authorsList = [];
