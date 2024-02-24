@@ -21,7 +21,7 @@ export default function Review({ params, searchParams }) {
           <div>
             <div className={styles.imgWrap}>
               <Image
-                src={searchParams.img}
+                src={`https://covers.openlibrary.org/b/id/${searchParams.coverId}-M.jpg`}
                 alt={searchParams.title}
                 fill={true}
               />

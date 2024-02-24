@@ -131,10 +131,10 @@ function handleSubmit(e, workId, reviewState, router) {
     body: JSON.stringify(review),
   })
     .then((res) => handleFetchResponse(res))
-    .then((data) => handleSuccess(data))
+    .then((data) => handleSuccess())
     .catch((err) => console.log(err));
 
-  function handleSuccess(data) {
+  function handleSuccess() {
     return router.back();
   }
 }
