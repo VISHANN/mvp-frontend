@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ReviewButton from "./ReviewButton";
+import Review from "./Review";
 
 export default function MyReview({ work }) {
   const [userReview, setUserReview] = useState([]);
@@ -13,7 +14,9 @@ export default function MyReview({ work }) {
   return (
     <section>
       {userReview ? (
-        <div>your review</div>
+        <div>
+          <Review review={userReview} />
+        </div>
       ) : (
         <div>
           <h1 className="h4">

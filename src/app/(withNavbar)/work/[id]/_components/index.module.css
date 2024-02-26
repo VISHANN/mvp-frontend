@@ -1,0 +1,16 @@
+.gridWrap {
+  display: grid;
+  grid-template-columns: 36px 3fr;
+  grid-row: auto;
+  grid-template-areas: "left right";
+}
+.gridWrap > .left {
+  grid-area: "left";
+}
+.gridWrap > .right {
+  grid-area: "right";
+}
+
+.time {
+  font-size: .8rem;
+}
