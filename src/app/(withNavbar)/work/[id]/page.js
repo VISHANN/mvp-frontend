@@ -3,7 +3,6 @@ import Image from "next/image";
 import ShelvesButton from "@/components/ShelvesBtn";
 import PrimaryLink from "@/components/PrimaryLink";
 import Description from "./_components/Description";
-import ReviewButton from "./_components/ReviewButton";
 import Reviews from "./_components/Reviews";
 
 export default async function Work({ params }) {
