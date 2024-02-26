@@ -113,10 +113,12 @@ function handleSubmit(e, workId, reviewState, router) {
 
   const review = { ...reviewState };
 
+  // IMPROVE
   if (review.rating === null) {
     return alert("Please rate the book before submitting");
   }
 
+  // get indices of truthy values from review.moods
   review.moods = review.moods.reduce(
     (out, bool, index) => (bool ? out.concat(String(index)) : out),
     []

@@ -30,7 +30,7 @@ export default function SocialLogin({ setIsSignUp }) {
     })
       .then((res) => handleNewUser(res, setIsSignUp))
       .then((user) => loadUser(user, dispatch))
-      .then(() => router.push("/work/90"))
+      .then(() => router.push("/work/OL45804W"))
       .catch(logError);
   }
   function logError(err) {

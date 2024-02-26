@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import PrimaryLink from "@/components/PrimaryLink";
 
-export default function ReviewButton({ workId, coverId, title, authors }) {
+export default function ReviewButton({ workId, cover, title, authors }) {
   const [isReviewed, setIsReviewed] = useState(false);
   const router = useRouter();
 
@@ -25,7 +25,7 @@ export default function ReviewButton({ workId, coverId, title, authors }) {
         href={{
           pathname: `/review/${workId}`,
           query: {
-            coverId: coverId,
+            coverId: cover,
             title: title,
             authors: JSON.stringify(authors),
           },

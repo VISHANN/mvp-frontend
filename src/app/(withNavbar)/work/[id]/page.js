@@ -4,9 +4,11 @@ import ShelvesButton from "@/components/ShelvesBtn";
 import PrimaryLink from "@/components/PrimaryLink";
 import Description from "./_components/Description";
 import ReviewButton from "./_components/ReviewButton";
+import Reviews from "./_components/Reviews";
 
 export default async function Work({ params }) {
   const work = await getWorkMetadata(params.id);
+
   if (!work) {
     return <>Loadin...</>;
   }
@@ -62,11 +64,13 @@ export default async function Work({ params }) {
             </div>
           </div>
           <div className={styles.review}>
-            <ReviewButton
-              workId={params.id}
-              coverId={work.covers[0]}
-              title={work.title}
-              authors={work.authors}
+            <Reviews
+              work={{
+                id: params.id,
+                authors: work.authors,
+                title: work.title,
+                cover: work.covers[0],
+              }}
             />
           </div>
         </section>
@@ -80,6 +84,9 @@ async function getWorkMetadata(workId) {
     (res) => res.json()
   );
   const authorsList = [];
+
+  // handle any bad request so that server doesn't crash.
+  if (data.error === "notfound") return null;
 
   // data.authors is an array of objects described below:
   // {
