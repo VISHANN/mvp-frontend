@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ReviewButton from "./ReviewButton";
 import Review from "./Review";
+import PrimaryLink from "@/components/PrimaryLink";
 
 export default function MyReview({ work }) {
   const [userReview, setUserReview] = useState([]);
@@ -16,6 +17,13 @@ export default function MyReview({ work }) {
       {userReview ? (
         <div>
           <Review review={userReview} />
+          <PrimaryLink
+            href={{
+              pathname: `/review/${userReview._id}/edit`,
+            }}
+          >
+            Edit your review
+          </PrimaryLink>
         </div>
       ) : (
         <div>
