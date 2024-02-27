@@ -4,7 +4,7 @@ import { Ratings, TextareaInput, Moods, Pace } from "./";
 import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
 
-export default function Form({ workId, title }) {
+export default function Form({ workId, title, authors, coverId }) {
   const [review, setReview] = useState(generateInitialState);
   const [reviewProps, setReviewProps] = useState(null);
   const router = useRouter();
@@ -68,7 +68,9 @@ export default function Form({ workId, title }) {
       </div>
       <div className={styles.submitBtn}>
         <button
-          onClick={(e) => handleSubmit(e, workId, review, router)}
+          onClick={(e) =>
+            handleSubmit(e, workId, title, authors, coverId, review, router)
+          }
           className="btn btn-primary"
           disabled={review.rating === null}
         >
@@ -108,7 +110,7 @@ function generateInitialState() {
   };
 }
 
-function handleSubmit(e, workId, reviewState, router) {
+function handleSubmit(e, workId, title, authors, coverId, reviewState, router) {
   e.preventDefault();
 
   const review = { ...reviewState };
@@ -123,6 +125,14 @@ function handleSubmit(e, workId, reviewState, router) {
     (out, bool, index) => (bool ? out.concat(String(index)) : out),
     []
   );
+
+  // add workId, title, authors, coverId to review
+  review.work = {
+    workId,
+    title,
+    authors,
+    coverId,
+  };
 
   fetch(`${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/review/${workId}`, {
     method: "POST",

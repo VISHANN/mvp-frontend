@@ -38,7 +38,12 @@ export default function Review({ params, searchParams }) {
             </div>
           </div>
           <div>
-            <Form workId={params.id} title={searchParams.title} />
+            <Form
+              workId={params.id}
+              title={searchParams.title}
+              authors={authors}
+              coverId={searchParams.coverId}
+            />
           </div>
         </section>
       </div>

@@ -13,6 +13,8 @@ export default async function Work({ params }) {
   }
 
   const authorLinks = work.authors.map((author) => {
+    // author = { key: '/authors/OL34184A', given_name: 'Dahl, Roald.' }
+
     return (
       <PrimaryLink key={author.key} href={"#"}>
         {author.given_name}
