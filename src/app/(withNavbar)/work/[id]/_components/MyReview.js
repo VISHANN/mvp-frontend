@@ -44,6 +44,15 @@ export default function MyReview({ work }) {
   );
 }
 
+async function getUserReview(workId) {
+  const userReviews = await getUserReviews();
+  for (let review of userReviews) {
+    if (review.work.olid === workId) {
+      return review;
+    }
+  }
+}
+
 function getUserReviews() {
   return fetch(
     `${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/u/activity/reviews`,
@@ -53,13 +62,4 @@ function getUserReviews() {
   )
     .then((res) => res.json())
     .catch((err) => console.log(err));
-}
-
-async function getUserReview(workId) {
-  const userReviews = await getUserReviews();
-  for (let review of userReviews) {
-    if (review.workId === workId) {
-      return review;
-    }
-  }
 }

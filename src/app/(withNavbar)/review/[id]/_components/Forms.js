@@ -114,6 +114,12 @@ function handleSubmit(e, workId, title, authors, coverId, reviewState, router) {
   e.preventDefault();
 
   const review = { ...reviewState };
+  const work = {
+    id: workId,
+    title,
+    authors,
+    coverId,
+  };
 
   // IMPROVE
   if (review.rating === null) {
@@ -126,21 +132,13 @@ function handleSubmit(e, workId, title, authors, coverId, reviewState, router) {
     []
   );
 
-  // add workId, title, authors, coverId to review
-  review.work = {
-    workId,
-    title,
-    authors,
-    coverId,
-  };
-
-  fetch(`${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/review/${workId}`, {
+  fetch(`${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/review`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     credentials: "include",
-    body: JSON.stringify(review),
+    body: JSON.stringify({ review, work }),
   })
     .then((res) => handleFetchResponse(res))
     .then((data) => handleSuccess())
