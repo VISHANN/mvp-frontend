@@ -4,7 +4,9 @@ import Image from "next/image";
 import PrimaryLink from "@/components/PrimaryLink";
 import Form from "./_components/Forms";
 
-export default function Review({ params, searchParams }) {
+export default function Review({ searchParams }) {
+  const { workId, title, cover } = searchParams;
+
   const authors = JSON.parse(searchParams.authors);
   const authorLinks = authors.map((author) => {
     return (
@@ -21,8 +23,8 @@ export default function Review({ params, searchParams }) {
           <div>
             <div className={styles.imgWrap}>
               <Image
-                src={`https://covers.openlibrary.org/b/id/${searchParams.coverId}-M.jpg`}
-                alt={searchParams.title}
+                src={`https://covers.openlibrary.org/b/id/${cover}-M.jpg`}
+                alt={title}
                 fill={true}
               />
             </div>
@@ -31,7 +33,7 @@ export default function Review({ params, searchParams }) {
         <section>
           <div className={styles.work}>
             <div>
-              <h1 className={styles.title}>Review {searchParams.title}</h1>
+              <h1 className={styles.title}>Review {title}</h1>
             </div>
             <div>
               <h2 className={styles.author}>{authorLinks}</h2>
@@ -39,10 +41,10 @@ export default function Review({ params, searchParams }) {
           </div>
           <div>
             <Form
-              workId={params.id}
-              title={searchParams.title}
+              workId={workId}
+              title={title}
               authors={authors}
-              coverId={searchParams.coverId}
+              cover={cover}
             />
           </div>
         </section>

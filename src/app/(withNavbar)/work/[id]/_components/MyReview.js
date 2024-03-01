@@ -1,13 +1,18 @@
+"use client ";
+
 import { useEffect, useState } from "react";
 import ReviewButton from "./ReviewButton";
 import Review from "./Review";
 import PrimaryLink from "@/components/PrimaryLink";
+import { handleFetchResponse } from "@/app/lib";
 
 export default function MyReview({ work }) {
-  const [userReview, setUserReview] = useState([]);
+  const [userReview, setUserReview] = useState(null);
 
   useEffect(() => {
-    getUserReview(work.id).then((review) => setUserReview(review));
+    getUserReview(work.id)
+      .then((review) => setUserReview(review))
+      .catch((err) => console.log(err));
   }, []);
 
   console.log(userReview);
@@ -31,12 +36,7 @@ export default function MyReview({ work }) {
             Help others find their next read by reviewing this book
           </h1>
           <div>
-            <ReviewButton
-              workId={work.id}
-              title={work.title}
-              cover={work.cover}
-              authors={work.authors}
-            />
+            <ReviewButton work={work} />
           </div>
         </div>
       )}
@@ -46,6 +46,11 @@ export default function MyReview({ work }) {
 
 async function getUserReview(workId) {
   const userReviews = await getUserReviews();
+
+  // return if userReviews is an empty array [].
+  if (!userReviews) return null;
+
+  console.log(userReviews);
   for (let review of userReviews) {
     if (review.work.olid === workId) {
       return review;
@@ -55,11 +60,9 @@ async function getUserReview(workId) {
 
 function getUserReviews() {
   return fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/u/activity/reviews`,
+    `${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/me/activity/reviews`,
     {
       credentials: "include",
     }
-  )
-    .then((res) => res.json())
-    .catch((err) => console.log(err));
+  ).then((res) => handleFetchResponse(res));
 }

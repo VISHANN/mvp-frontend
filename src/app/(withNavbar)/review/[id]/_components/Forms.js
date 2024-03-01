@@ -4,7 +4,7 @@ import { Ratings, TextareaInput, Moods, Pace } from "./";
 import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
 
-export default function Form({ workId, title, authors, coverId }) {
+export default function Form({ workId, title, authors, cover }) {
   const [review, setReview] = useState(generateInitialState);
   const [reviewProps, setReviewProps] = useState(null);
   const router = useRouter();
@@ -69,7 +69,7 @@ export default function Form({ workId, title, authors, coverId }) {
       <div className={styles.submitBtn}>
         <button
           onClick={(e) =>
-            handleSubmit(e, workId, title, authors, coverId, review, router)
+            handleSubmit(e, workId, title, authors, cover, review, router)
           }
           className="btn btn-primary"
           disabled={review.rating === null}
@@ -110,7 +110,7 @@ function generateInitialState() {
   };
 }
 
-function handleSubmit(e, workId, title, authors, coverId, reviewState, router) {
+function handleSubmit(e, workId, title, authors, cover, reviewState, router) {
   e.preventDefault();
 
   const review = { ...reviewState };
@@ -118,7 +118,7 @@ function handleSubmit(e, workId, title, authors, coverId, reviewState, router) {
     id: workId,
     title,
     authors,
-    coverId,
+    cover,
   };
 
   // IMPROVE
