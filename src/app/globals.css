@@ -55,18 +55,24 @@ html {
   /* transition delay timers */
   --transition-delay: .2s;
 
-  --border-radius-2: .5rem
+  --border-radius-2: .5rem;
+
+  --main-margin-top: 1.6rem;
 }
 
 body {
   color: black;
-  height: 200vh;
+  height: 100vh;
 }
 
 .container {
   width: 60%;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+.main {
+  padding-top: var(--main-margin-top);
 }
 
 @media screen and (max-width: 760px) {
