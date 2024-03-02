@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -10,12 +10,9 @@ export default function Home() {
   const [user, dispatch] = useContext(UserContext);
 
   return (
-    <main className="container">
+    <main>
       <br />
-      <Link 
-        href={'/work/4'}>
-        work
-      </Link>  
+      <Link href={"/work/4"}>work</Link>
     </main>
-  )
+  );
 }

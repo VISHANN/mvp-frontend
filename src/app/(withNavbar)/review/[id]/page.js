@@ -17,7 +17,7 @@ export default function Review({ searchParams }) {
   });
 
   return (
-    <article className={`container ${styles.main}`}>
+    <article>
       <div className={styles.gridWrap}>
         <section>
           <div>

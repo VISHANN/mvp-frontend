@@ -22,7 +22,7 @@ export default async function Work({ params }) {
     );
   });
   return (
-    <main className={`container ${styles.main}`}>
+    <main>
       <div className={styles.gridWrap}>
         <section>
           <div>
