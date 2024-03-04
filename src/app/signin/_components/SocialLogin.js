@@ -38,6 +38,11 @@ export default function SocialLogin({ setIsSignUp }) {
   }
 }
 function handleNewUser(res, setIsSignUp) {
+  // We are fetching user from our servers, if the user exists the response's status code would be ok
+  // If res status code is in 400s, it means server could not find the user. Thus it must be a new registration.
+  // HandleNewUser then sets isSignUp to be true, showing signup form.
+  // handleNewUser also stops redirection by throwing error and ending the fetch promise chain.
+
   if (res.ok) {
     return res.json();
   }
@@ -52,9 +57,9 @@ function handleNewUser(res, setIsSignUp) {
 }
 
 function loadUser(user, dispatch) {
-  const { given_name, picture } = user;
+  const { given_name, picture, username } = user;
 
-  dispatch({ type: "ADD_USER", payload: { given_name, picture } });
+  dispatch({ type: "ADD_USER", payload: { given_name, picture, username } });
 
   // localStorage is built to retrieve string only, so stringify using JSON.stringify while
   // saving to localStorage and JSON.parse while retrieving from localStorage
