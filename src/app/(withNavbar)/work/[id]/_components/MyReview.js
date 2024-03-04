@@ -15,8 +15,6 @@ export default function MyReview({ work }) {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(userReview);
-
   return (
     <section>
       {userReview ? (
@@ -50,7 +48,6 @@ async function getUserReview(workId) {
   // return if userReviews is an empty array [].
   if (!userReviews) return null;
 
-  console.log(userReviews);
   for (let review of userReviews) {
     if (review.work.olid === workId) {
       return review;

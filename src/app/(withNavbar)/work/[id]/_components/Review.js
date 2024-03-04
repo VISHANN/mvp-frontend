@@ -5,7 +5,6 @@ import { UserContext } from "@/app/context";
 
 export default function Review({ review }) {
   const [user] = useContext(UserContext);
-  console.log(user);
 
   return (
     <div className={styles.gridWrap}>
