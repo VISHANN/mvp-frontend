@@ -4,7 +4,7 @@ import { Ratings, TextareaInput, Moods, Pace } from "./";
 import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
 
-export default function Form({ workId, title, authors, cover }) {
+export default function Form({ workId, title, authors, cover, userReview }) {
   const [review, setReview] = useState(generateInitialState);
   const [reviewProps, setReviewProps] = useState(null);
   const router = useRouter();
@@ -14,10 +14,31 @@ export default function Form({ workId, title, authors, cover }) {
       .then((res) => res.json())
       .then((reviewProps) => {
         setReviewProps(reviewProps);
-        setReview((review) => ({
-          ...review,
-          moods: Array(reviewProps.moods.length).fill(false),
-        }));
+
+        setReview((review) => {
+          if (userReview) {
+            // review.moods: ["1", "8", "9"]
+            // We must convert it to array of bools, indicating true for the indices as in review.moods
+            let moods = Array(reviewProps.moods.length).fill(false);
+
+            // each element in review.moods is moodId String
+            for (let moodId of userReview.moods) {
+              // convert moodId to number indices to access moods array
+              moods[Number(moodId)] = true;
+            }
+
+            // return new review state generated from userReview
+            return {
+              ...userReview,
+              moods: moods,
+            };
+          } else {
+            return {
+              ...review,
+              moods: Array(reviewProps.moods.length).fill(false),
+            };
+          }
+        });
         return;
       })
       .catch((err) => console.log(err));

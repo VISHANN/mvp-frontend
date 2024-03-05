@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import styles from "../page.module.css";
 import PrimaryLink from "@/components/PrimaryLink";
 import Image from "next/image";
+import Form from "../_components/Forms";
 
 export default function EditReview({ params }) {
   const reviewId = params.id;
@@ -50,7 +51,7 @@ export default function EditReview({ params }) {
 
   const authorLinks = authors.map((author) => {
     return (
-      <PrimaryLink key={author.key} href={"#"}>
+      <PrimaryLink key={author.olid} href={"#"}>
         {author.given_name}
       </PrimaryLink>
     );
@@ -78,6 +79,9 @@ export default function EditReview({ params }) {
             <div>
               <h2 className={styles.author}>{authorLinks}</h2>
             </div>
+          </div>
+          <div>
+            <Form userReview={review} workId={olid} {...review.work} />
           </div>
         </section>
       </div>
