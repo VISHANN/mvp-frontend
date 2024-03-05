@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import styles from "../page.module.css";
 import PrimaryLink from "@/components/PrimaryLink";
 import Image from "next/image";
-import Form from "../_components/Forms";
+import Form from "../_components/ReviewForm";
 
 export default function EditReview({ params }) {
   const reviewId = params.id;

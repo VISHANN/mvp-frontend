@@ -1,11 +1,11 @@
 import { handleFetchResponse } from "@/app/lib";
 import { useEffect, useState } from "react";
-import { Ratings, TextareaInput, Moods, Pace } from "./";
+import { Ratings, TextareaInput, Moods, Pace } from ".";
 import { useRouter } from "next/navigation";
 import styles from "./index.module.css";
 
 export default function Form({ workId, title, authors, cover, userReview }) {
-  const [review, setReview] = useState(generateInitialState);
+  const [review, setReview] = useState(null);
   const [reviewProps, setReviewProps] = useState(null);
   const router = useRouter();
 
@@ -14,37 +14,12 @@ export default function Form({ workId, title, authors, cover, userReview }) {
       .then((res) => res.json())
       .then((reviewProps) => {
         setReviewProps(reviewProps);
-
-        setReview((review) => {
-          if (userReview) {
-            // review.moods: ["1", "8", "9"]
-            // We must convert it to array of bools, indicating true for the indices as in review.moods
-            let moods = Array(reviewProps.moods.length).fill(false);
-
-            // each element in review.moods is moodId String
-            for (let moodId of userReview.moods) {
-              // convert moodId to number indices to access moods array
-              moods[Number(moodId)] = true;
-            }
-
-            // return new review state generated from userReview
-            return {
-              ...userReview,
-              moods: moods,
-            };
-          } else {
-            return {
-              ...review,
-              moods: Array(reviewProps.moods.length).fill(false),
-            };
-          }
-        });
-        return;
+        setReview(pullState(reviewProps, userReview));
       })
       .catch((err) => console.log(err));
   }, []);
 
-  if (!reviewProps) {
+  if (!reviewProps || !review) {
     return (
       <main className="container">
         <h4 className="h4">Loading ...</h4>
@@ -131,7 +106,36 @@ export default function Form({ workId, title, authors, cover, userReview }) {
   }
 }
 
-function generateInitialState() {
+function pullState(reviewProps, userReview) {
+  // declare an array of false values length of reviewProps.moods
+  let moods = Array(reviewProps.moods.length).fill(false);
+
+  if (userReview) {
+    // review.moods: ["1", "8", "9"]
+    // We must convert it to array of bools, indicating true for the indices as in review.moods
+
+    // each element in review.moods is moodId String
+    for (let moodId of userReview.moods) {
+      // convert moodId to number indices to access moods array
+      moods[Number(moodId)] = true;
+    }
+
+    // return new review state generated from userReview
+    return {
+      ...userReview,
+      moods: moods,
+    };
+  }
+
+  // userReview would be undefined for adding review for first time. Return intial review state
+  return {
+    rating: null,
+    text: "",
+    moods,
+    pace: null,
+  };
+}
+function genIntialReview() {
   return {
     rating: null,
     text: "",

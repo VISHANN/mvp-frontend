@@ -2,7 +2,7 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import PrimaryLink from "@/components/PrimaryLink";
-import Form from "./_components/Forms";
+import Form from "./_components/ReviewForm";
 
 export default function Review({ searchParams }) {
   const { workId, title, cover } = searchParams;
