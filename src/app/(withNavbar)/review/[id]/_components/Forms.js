@@ -90,7 +90,16 @@ export default function Form({ workId, title, authors, cover, userReview }) {
       <div className={styles.submitBtn}>
         <button
           onClick={(e) =>
-            handleSubmit(e, workId, title, authors, cover, review, router)
+            handleSubmit(
+              e,
+              workId,
+              title,
+              authors,
+              cover,
+              review,
+              router,
+              userReview
+            )
           }
           className="btn btn-primary"
           disabled={review.rating === null}
@@ -131,7 +140,16 @@ function generateInitialState() {
   };
 }
 
-function handleSubmit(e, workId, title, authors, cover, reviewState, router) {
+function handleSubmit(
+  e,
+  workId,
+  title,
+  authors,
+  cover,
+  reviewState,
+  router,
+  userReview
+) {
   e.preventDefault();
 
   const review = { ...reviewState };
@@ -153,14 +171,19 @@ function handleSubmit(e, workId, title, authors, cover, reviewState, router) {
     []
   );
 
-  fetch(`${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/review`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-    body: JSON.stringify({ review, work }),
-  })
+  fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URI}/api/v1/review/${
+      userReview ? userReview._id : ""
+    }`,
+    {
+      method: userReview ? "PUT" : "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ review, work }),
+    }
+  )
     .then((res) => handleFetchResponse(res))
     .then((data) => handleSuccess())
     .catch((err) => console.log(err));
