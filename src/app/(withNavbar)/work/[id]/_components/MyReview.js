@@ -7,26 +7,27 @@ import PrimaryLink from "@/components/PrimaryLink";
 import { handleFetchResponse } from "@/app/lib";
 
 export default function MyReview({ work }) {
-  const [userReview, setUserReview] = useState(null);
+  const [myReview, setMyReview] = useState(null);
 
   useEffect(() => {
     getUserReview(work.id)
-      .then((review) => setUserReview(review))
+      .then((review) => setMyReview(review))
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <section>
-      {userReview ? (
+      {myReview ? (
         <div>
-          <Review review={userReview} />
-          <PrimaryLink
-            href={{
-              pathname: `/review/${userReview._id}/edit`,
-            }}
-          >
-            Edit your review
-          </PrimaryLink>
+          <Review review={myReview}>
+            <PrimaryLink
+              href={{
+                pathname: `/review/${myReview._id}/edit`,
+              }}
+            >
+              Edit your review
+            </PrimaryLink>
+          </Review>
         </div>
       ) : (
         <div>

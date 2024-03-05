@@ -3,7 +3,7 @@ import UserProfile from "@/components/UserProfile";
 import { useContext } from "react";
 import { UserContext } from "@/app/context";
 
-export default function Review({ review }) {
+export default function Review({ review, children }) {
   const [user] = useContext(UserContext);
 
   return (
@@ -24,6 +24,8 @@ export default function Review({ review }) {
           <span className={styles.time}>
             {Date(review.createdAt).substring(4, 15)}
           </span>
+          <span> • </span>
+          <span className={styles.time}>{children}</span>
         </div>
       </div>
     </div>

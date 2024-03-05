@@ -105,7 +105,8 @@ body {
   background-color: rgba(var(--secondary-black));
 }
 
-.link {
+.link,
+.link:visited {
   cursor: pointer;
   padding: 0;
   margin: 0;
