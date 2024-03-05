@@ -15,7 +15,7 @@ export default function Review({ review, children }) {
         <div>
           <span>{user.given_name}</span>
           <span> • </span>
-          <span>{"thumbs up icon"}</span>
+          <span></span>
         </div>
         <div>
           <p>{review.text}</p>

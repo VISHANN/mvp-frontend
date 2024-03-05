@@ -6,7 +6,7 @@
   right: 0;
   bottom: 0;
 }
-.rating:checked + label .thumbs {
+.rating:checked + label {
   background-color: rgba(var(--secondary-black));
   color: var(--primary-green);
 }
@@ -14,42 +14,6 @@
 .ratingButtons {
   display: flex;
   justify-content: space-evenly;
-}
-.ratingBtn {
-  padding: 1rem;
-}
-.ratingBtn > .thumbs {
-  position: relative;
-  width: 70px;
-  height: 70px;
-  padding: 1rem;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: rgba(var(--charcoal-black));
-}
-.caption {
-  text-align: center;
-}
-.thumbs {
-  transition: background-color .2s ease-in;
-}
-.thumbs:hover,
-.thumbs:focus{
-  background-color: rgba(var(--secondary-black));
-}
-/* using * to select .react-icon */
-.thumbs > * {
-  width: 1.75rem;
-  height: 100%;
-}
-.doubleThumbsUp {
-  position: relative;
-}
-.doubleThumbsUp > * {
-  height: 100%;
-  width: 100%;
-  transform: translate3d(15%, -5%, 0);
 }
 
 textarea.reviewText{
