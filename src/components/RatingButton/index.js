@@ -4,7 +4,6 @@ import {
   BsHandThumbsUp,
   BsHandThumbsDown,
 } from "react-icons/bs";
-import styles from "./index.module.css";
 
 export default function RatingButton({ value, rating }) {
   let caption = rating.caption,
@@ -22,16 +21,16 @@ export default function RatingButton({ value, rating }) {
       break;
   }
   return (
-    <div className={styles.ratingBtn}>
-      <div className={styles.thumbs}>{icon}</div>
-      <p className={styles.caption}>{caption}</p>
+    <div className="ratingBtn">
+      <div className="ratingIcon">{icon}</div>
+      <p className="caption">{caption}</p>
     </div>
   );
 }
 
 function DoubleThumbsUp() {
   return (
-    <div className={styles.doubleThumbsUp}>
+    <div className="doubleThumbsUp">
       <BsHandThumbsUpFill />
       <BsHandThumbsUpFill />
     </div>
