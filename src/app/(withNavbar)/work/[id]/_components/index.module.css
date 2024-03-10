@@ -17,7 +17,7 @@
 
 .header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: 0.5em; 
 }
@@ -26,6 +26,6 @@
 
 .ratingIcon {
   display: inline-block;
-  height: 1.2em;
-  width: 1.2em;
+  height: 1.1em;
+  width: 1.1em;
 }

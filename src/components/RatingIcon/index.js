@@ -9,13 +9,21 @@ export default function RatingIcon({ ratingId, active, styles }) {
   switch (ratingId) {
     case "0":
       return (
-        <span style={styles} className="ratingIcon">
+        <span
+          style={styles}
+          className={`ratingIcon ${active && "active"}`}
+          id="ratingIcon-0"
+        >
           {active ? <BsHandThumbsDownFill /> : <BsHandThumbsDown />}
         </span>
       );
     case "1":
       return (
-        <span style={styles} className="ratingIcon">
+        <span
+          style={styles}
+          className={`ratingIcon ${active && "active"}`}
+          id="ratingIcon-1"
+        >
           {active ? <BsHandThumbsUpFill /> : <BsHandThumbsUp />}
         </span>
       );
@@ -24,6 +32,7 @@ export default function RatingIcon({ ratingId, active, styles }) {
         <span
           style={styles}
           className={`ratingIcon twoThumbsUp ${active ? "active" : null}`}
+          id="ratingIcon-2"
         >
           <DoubleThumbsUp />
         </span>

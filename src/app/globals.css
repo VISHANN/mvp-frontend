@@ -221,6 +221,12 @@ body {
   stroke: white;
   fill: var(--primary-green);
 }
+#ratingIcon-0.active {
+  color: rgba(var(--brand-red));
+}
+#ratingIcon-1.active {
+  color: var(--primary-green);
+}
 
 /* select the first thumbIcon up amongst the two */
 
