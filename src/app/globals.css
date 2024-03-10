@@ -149,7 +149,7 @@ body {
 .ratingBtn {
   padding: 1rem;
 }
-.ratingBtn > .thumbIcon {
+.ratingBtn .thumbButton {
   position: relative;
   width: 70px;
   height: 70px;
@@ -157,34 +157,43 @@ body {
   border-radius: 50%;
   color: rgba(var(--charcoal-black));
   transition: background-color .2s ease-in;
+
+  display: grid;
+  place-items: center;
 }
 .caption {
   text-align: center;
 }
 
-.thumbIcon:hover,
-.thumbIcon:focus{
+.thumbButton:hover,
+.thumbButton:focus{
   background-color: rgba(var(--secondary-black));
 }
 
 .thumbIcon span {
   display: inline-block;
 }
+.thumbIcon {
+  width: 28px;
+  height: 28px;
+}
 
 /* Controlling size of thumb icons inside thumbIcon buttons on review form */
 
+.ratingIcon {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
 .ratingIcon .react-icon {
-  width: 28px;
-  height: 28px;
+  width: 100%;
+  height: 100%;
   overflow: visible;
 }
 
 /* Center RatingIcon  */
 
 .thumbIcon .ratingIcon {
-  display: grid;
-  place-items: center;
-
   width: 100%;
   height: 100%;
 }
@@ -193,7 +202,7 @@ body {
 
 .twoThumbsUp {
   position: relative;
-  transform: translate3d(-10%, 10%, 0);
+  transform: translate3d(-20%, 0, 0);
 }
 
 /* Default styling for thumb icons inside twoThumbsUp */

@@ -5,23 +5,26 @@ import {
   BsHandThumbsDown,
 } from "react-icons/bs";
 
-export default function RatingIcon({ ratingId, active }) {
+export default function RatingIcon({ ratingId, active, styles }) {
   switch (ratingId) {
     case "0":
       return (
-        <span className="ratingIcon">
+        <span style={styles} className="ratingIcon">
           {active ? <BsHandThumbsDownFill /> : <BsHandThumbsDown />}
         </span>
       );
     case "1":
       return (
-        <span className="ratingIcon">
+        <span style={styles} className="ratingIcon">
           {active ? <BsHandThumbsUpFill /> : <BsHandThumbsUp />}
         </span>
       );
     case "2":
       return (
-        <span className={`ratingIcon twoThumbsUp ${active ? "active" : null}`}>
+        <span
+          style={styles}
+          className={`ratingIcon twoThumbsUp ${active ? "active" : null}`}
+        >
           <DoubleThumbsUp />
         </span>
       );

@@ -13,15 +13,11 @@ export default function Review({ review, children }) {
         <UserProfile src={user.picture} />
       </div>
       <div className={styles.right}>
-        <div>
+        <div className={styles.header}>
           <span>{user.given_name}</span>
           <span> • </span>
-          <span>
-            <RatingIcon
-              ratingId={review.rating}
-              styles={{ width: "80%" }}
-              active={true}
-            />
+          <span className={styles.ratingIcon}>
+            <RatingIcon ratingId={review.rating} active={true} />
           </span>
         </div>
         <div>

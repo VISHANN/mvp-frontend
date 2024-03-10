@@ -14,3 +14,18 @@
 .time {
   font-size: .9em;
 }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5em; 
+}
+
+/* Custom size for the rating icon to fit Review component */
+
+.ratingIcon {
+  display: inline-block;
+  height: 1.2em;
+  width: 1.2em;
+}
