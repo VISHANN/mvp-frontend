@@ -1,38 +1,14 @@
-import {
-  BsHandThumbsUpFill,
-  BsHandThumbsDownFill,
-  BsHandThumbsUp,
-  BsHandThumbsDown,
-} from "react-icons/bs";
+import RatingIcon from "../RatingIcon";
 
 export default function RatingButton({ value, rating }) {
-  let caption = rating.caption,
-    icon;
+  let caption = rating.caption;
 
-  switch (rating.id) {
-    case "0":
-      icon = value === "0" ? <BsHandThumbsDownFill /> : <BsHandThumbsDown />;
-      break;
-    case "1":
-      icon = value === "1" ? <BsHandThumbsUpFill /> : <BsHandThumbsUp />;
-      break;
-    case "2":
-      icon = <DoubleThumbsUp />;
-      break;
-  }
   return (
     <div className="ratingBtn">
-      <div className="ratingIcon">{icon}</div>
+      <div className="thumbIcon">
+        <RatingIcon ratingId={rating.id} active={value === rating.id} />
+      </div>
       <p className="caption">{caption}</p>
-    </div>
-  );
-}
-
-function DoubleThumbsUp() {
-  return (
-    <div className="doubleThumbsUp">
-      <BsHandThumbsUpFill />
-      <BsHandThumbsUpFill />
     </div>
   );
 }

@@ -144,65 +144,89 @@ body {
   width: 1.5rem;
 }
 
+/* styling rating buttons */
+
 .ratingBtn {
   padding: 1rem;
 }
-.ratingBtn > .ratingIcon {
+.ratingBtn > .thumbIcon {
   position: relative;
   width: 70px;
   height: 70px;
   padding: 1rem;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
   color: rgba(var(--charcoal-black));
-
-  background-color: inherit;
-  color: inherit;
+  transition: background-color .2s ease-in;
 }
 .caption {
   text-align: center;
 }
 
-.ratingIcon {
-  transition: background-color .2s ease-in;
-}
-.ratingIcon:hover,
-.ratingIcon:focus{
+.thumbIcon:hover,
+.thumbIcon:focus{
   background-color: rgba(var(--secondary-black));
 }
-/* using * to select .react-icon */
-.ratingIcon > * {
-  width: 1.75rem;
-  height: 100%;
-}
-.doubleThumbsUp {
-  position: relative;
-}
-.doubleThumbsUp > * {
-  height: 100%;
-  width: 100%;
-  transform: translate3d(15%, -5%, 0);
+
+.thumbIcon span {
+  display: inline-block;
 }
 
-/* select double ratingIcon icon */
-label[for="rating_2"] .react-icon ,
-.doubleThumbsUp .react-icon {
+/* Controlling size of thumb icons inside thumbIcon buttons on review form */
+
+.ratingIcon .react-icon {
+  width: 28px;
+  height: 28px;
+  overflow: visible;
+}
+
+/* Center RatingIcon  */
+
+.thumbIcon .ratingIcon {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+/* Centering the wrapper component of double thumbs up */
+
+.twoThumbsUp {
+  position: relative;
+  transform: translate3d(-10%, 10%, 0);
+}
+
+/* Default styling for thumb icons inside twoThumbsUp */
+
+.twoThumbsUp .react-icon {
   position: absolute;
-  /* border: 1px solid black; */
   fill: white;
-  stroke: rgba(var(--charcoal-black));
   stroke-width: 1px;
+  stroke: rgba(var(--charcoal-black));
   stroke-linejoin: round;
 }
-/* select the first ratingIcon up amongst the two */
-label[for="rating_2"] .react-icon:first-child ,
-.doubleThumbsUp .react-icon:first-child {
-  transform: translate3d(-30%, 7%, 0);
-  z-index: 10;
+
+/* Invert colors if twoThumbsUp active, used to get icons in Review component */
+
+.twoThumbsUp.active .react-icon{
+  stroke: white;
+  fill: var(--primary-green);
 }
+
+/* select the first thumbIcon up amongst the two */
+
+.twoThumbsUp .react-icon:last-child {
+  transform: translate3d(40%, -20%, 0);
+  z-index: -10;
+}
+
+/* Modify fill and stroke colors when rating input checked */
+
 #rating_2:checked + label .react-icon {
   stroke: white;
+  fill: var(--primary-green);
+}
+#rating_1:checked + label .react-icon {
   fill: var(--primary-green);
 }
 #rating_0:checked + label .react-icon {

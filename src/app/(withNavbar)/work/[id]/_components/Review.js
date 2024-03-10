@@ -2,6 +2,7 @@ import styles from "./index.module.css";
 import UserProfile from "@/components/UserProfile";
 import { useContext } from "react";
 import { UserContext } from "@/app/context";
+import RatingIcon from "@/components/RatingIcon";
 
 export default function Review({ review, children }) {
   const [user] = useContext(UserContext);
@@ -15,7 +16,13 @@ export default function Review({ review, children }) {
         <div>
           <span>{user.given_name}</span>
           <span> • </span>
-          <span></span>
+          <span>
+            <RatingIcon
+              ratingId={review.rating}
+              styles={{ width: "80%" }}
+              active={true}
+            />
+          </span>
         </div>
         <div>
           <p>{review.text}</p>
