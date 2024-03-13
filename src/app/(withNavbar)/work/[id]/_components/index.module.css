@@ -29,3 +29,10 @@
   height: 1.1em;
   width: 1.1em;
 }
+
+/* Styles for MyReview */
+
+.myReview {
+  border-bottom: 2px solid rgba(var(--border-black));
+  padding: .75rem 0 .75rem;
+}

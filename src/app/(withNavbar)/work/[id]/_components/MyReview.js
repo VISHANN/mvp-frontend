@@ -5,6 +5,7 @@ import ReviewButton from "./ReviewButton";
 import Review from "./Review";
 import PrimaryLink from "@/components/PrimaryLink";
 import { handleFetchResponse } from "@/app/lib";
+import styles from "./index.module.css";
 
 export default function MyReview({ work }) {
   const [myReview, setMyReview] = useState(null);
@@ -16,7 +17,7 @@ export default function MyReview({ work }) {
   }, []);
 
   return (
-    <section>
+    <section className={styles.myReview}>
       {myReview ? (
         <div>
           <Review review={myReview}>
