@@ -1,11 +1,9 @@
 import styles from "./index.module.css";
 import UserProfile from "@/components/UserProfile";
-import { useContext } from "react";
-import { UserContext } from "@/app/context";
 import RatingIcon from "@/components/RatingIcon";
 
 export default function Review({ review, children }) {
-  const [user] = useContext(UserContext);
+  const user = review.author;
 
   return (
     <div className={styles.gridWrap}>
