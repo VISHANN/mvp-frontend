@@ -24,7 +24,7 @@ export default function Review({ review, children }) {
             <span className={styles.time}>
               {Date(review.createdAt).substring(4, 15)}
             </span>
-            <span> • </span>
+            {children && <span> • </span>}
             <span className={styles.time}>{children}</span>
           </div>
         </div>

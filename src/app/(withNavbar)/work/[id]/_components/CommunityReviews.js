@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import MyReview from "./MyReview";
 import { handleFetchResponse } from "@/app/lib";
 import Review from "./Review";
+import styles from "./index.module.css";
 
 export default function Reviews({ work }) {
   const [reviews, setReviews] = useState(null);
@@ -27,7 +28,7 @@ export default function Reviews({ work }) {
     <article>
       <h1 className=".h2">Community Reviews</h1>
       <MyReview work={work} />
-      <section>
+      <section className={styles.reviews}>
         {reviews.map((review) => (
           <Review key={review._id} review={review} />
         ))}

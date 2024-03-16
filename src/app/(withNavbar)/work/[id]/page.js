@@ -3,7 +3,7 @@ import Image from "next/image";
 import ShelvesButton from "@/components/ShelvesBtn";
 import PrimaryLink from "@/components/PrimaryLink";
 import Description from "./_components/Description";
-import Reviews from "./_components/Reviews";
+import Reviews from "./_components/CommunityReviews";
 
 export default async function Work({ params }) {
   const work = await getWorkMetadata(params.id);

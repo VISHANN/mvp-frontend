@@ -40,3 +40,9 @@
   border-bottom: 2px solid rgba(var(--border-black));
   padding: .75rem 0 .75rem;
 }
+
+/* Reviews Styles */
+
+.reviews {
+  padding-top: .75rem;
+}
